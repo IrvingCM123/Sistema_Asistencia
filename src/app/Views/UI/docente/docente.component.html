@@ -1,0 +1,27 @@
+<main class="Contenedor">
+  <article class="Contenedor_Tarjeta">
+    <section>
+        <div class="Card_Docente">
+
+          <div class="Informacion">
+            <div class="image">
+              <div class="circle-1"></div>
+              <div class="circle-2"></div>
+              <img *ngIf="!datos?.title" src="{{datos.img }}" alt="" width="70" height="70">
+            </div>
+
+            <div class="actions">
+              <div *ngIf="!datos?.title" class="btn hvr-underline-from-center name"> {{datos.nombre_docente}} </div>
+              <div class="btn hvr-underline-from-center info">Catedratico de la Universidad Veracruzana</div>
+            </div>
+
+            <div class="actions">
+              <div *ngIf="!datos?.title" class="btn hvr-underline-from-center info">Numero de personal: <span class="Info_Span"> {{datos.numero_personal}} </span></div>
+              <div *ngIf="!datos?.title" class="btn hvr-underline-from-center info">Facultad Asignada: <span class="Info_Span"> {{datos.facultad_asignada}} </span></div>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </article>
+</main>

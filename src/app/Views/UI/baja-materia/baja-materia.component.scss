@@ -1,0 +1,120 @@
+.Contenedor_Formulario {
+  min-width: 70%;
+  min-height: 50%;
+  max-width: fit-content;
+  max-height: fit-content;
+  margin: 5% 10%;
+
+  border-color: black;
+  border-style: groove;
+
+  display: grid;
+  grid-template-columns: 4FR 3FR;
+}
+
+.Formulario {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  background: rgba(0, 48, 73, $alpha: 0.8);
+}
+
+.Formulario header {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-items: center;
+}
+
+.Formulario header h2 {
+  color: crimson;
+  font-size: 25px;
+  font-family: sans-serif;
+  font-weight: 400;
+  margin: 1% 15%;
+}
+
+.Formulario header p {
+  color:rgba($color: #ffff, $alpha: 0.8);
+  font-size: 15px;
+  font-family: sans-serif;
+  font-weight: 400;
+  margin: 1% 2%;
+}
+
+.Formulario Form {
+  margin: 5% 10%;
+}
+
+.Form form div label {
+  display: block;
+  color: #ff851b;
+  font-size: 16px;
+  font-family: sans-serif;
+  position: relative;
+  margin-top: 3px;
+}
+
+.Form form div input {
+  background: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #fff;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 2px;
+  font-size: 14px;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.Form form button {
+  background: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #fff;
+  margin-left: 83%;
+  margin-top: 10px;
+  color: crimson;
+  font-size: 20px;
+}
+
+.Contact_Info {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  background: rgba($color: #ffff, $alpha: 0.5);
+
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+}
+
+.Contact_Info-Header {
+  grid-row: 1/1;
+  color: darkcyan;
+  height: 30%;
+
+  font-size: 30px;
+  font-weight: 600;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.Contact_Info-Body{
+  grid-row: 2/8;
+  height: fit-content;
+  padding: 2px 10px;
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: black;
+  font-size: 20px;
+}
+
+.Contact_Info-Body ul p span {
+  font-style: italic;
+  color: #ff851b;
+}
+
+

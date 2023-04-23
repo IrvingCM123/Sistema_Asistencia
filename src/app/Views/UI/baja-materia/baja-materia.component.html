@@ -1,0 +1,74 @@
+
+<main class="Contenedor_Formulario">
+  <section class="Formulario">
+    <header>
+      <h2>Formulario para Baja Materia</h2>
+      <p> Solicite una baja de materia a nuestro servicio administrativo. <br>
+      Si el proceso es aceptado, podrá ver que su materia solicitada dejará de aparecer en su apartado
+    de inicio</p>
+    </header>
+
+    <div class="Form">
+      <form #operacionForm="ngForm" (ngSubmit)="submitOperacion()" (submit)="onSubmit($event)">
+        <div>
+          <label for="apellido">Número del Personal:</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            maxlength="11"
+            [(ngModel)]="operacion.numero"
+            required
+
+          />
+        </div>
+        <div>
+          <label for="apellido">NRC de la materia:</label>
+          <input
+            type="text"
+            id="apellido"
+            name="apellido"
+            maxlength="6"
+            [(ngModel)]="operacion.nrc"
+            required
+          />
+        </div>
+        <button type="submit" [disabled]="!operacionForm.valid">Enviar</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="Contact_Info">
+    <div>
+      <header class="Contact_Info-Header">
+        Contact_Info
+      </header>
+
+      <div class="Contact_Info-Body">
+        <ul>
+          <p>
+            Student: <span> Irving Rafael CM</span>
+          </p>
+          <p>
+            Email : <span> Irving.CondeM@Gmail.com </span>
+          </p>
+          <p>
+            Number: <span> 272-149-5728 </span>
+          </p>
+
+          <div style="margin-top: 2rem;"></div>
+
+          <p>
+            Student: <span> Adriel Eduardo PS</span>
+          </p>
+          <p>
+            Email : <span> #######@Gmail.com </span>
+          </p>
+          <p>
+            Number: <span> 272-###-#### </span>
+          </p>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>

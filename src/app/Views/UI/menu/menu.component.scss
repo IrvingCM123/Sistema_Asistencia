@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i&display=swap");
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background:fixed;
+}
+
+.Navegador {
+  position: relative;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 30px;
+  max-height: 30px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+
+  background-color: rgba(13, 71, 161, $alpha: 1);
+  margin: 0;
+  padding: 0;
+
+}
+
+.Logo_Pagina {
+  grid-column-start: 1;
+  grid-column-end: 1;
+
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.Nombre_Pagina {
+  grid-column-start: 2;
+  grid-column-end: 3;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.Opciones_Rutas {
+  grid-column-start: 3;
+  grid-column-end: 6;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.Cuenta {
+  grid-column-start: 6;
+  grid-column-end: 7;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0;
+}
+
+.Logo_Pagina_img img {
+  width: 70%;
+  height: 70%;
+  padding: 0 20px;
+}
+
+.Nombre_Pagina_Text_Defualt {
+  background: linear-gradient(to left,
+      rgba(248, 249, 250, 1), rgba(233, 236, 239, 1), rgba(222, 226, 230), rgba(206, 212, 218, 1),
+      rgba(206, 212, 218, 1), rgba(206, 212, 218, 1),rgba(173, 181, 189, 1),
+    );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 30px;
+}
+
+.Nombre_Pagina_Text {
+  background: linear-gradient(to left,
+      rgba(52, 58, 64, 1),
+      rgba(33, 37, 41, 1), rgba(33, 37, 41, 1), rgba(33, 37, 41, 1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.Rutas_Navegacion_Listado {
+  display: flex;
+  flex-direction: row;
+
+  align-content: center;
+  justify-content: space-around;
+}
+
+.Rutas_Navegacion_Listado a {
+  background: linear-gradient(to left,
+      rgb(255, 255, 255), rgb(254, 254, 255), rgb(251, 253, 255),rgba(248, 249, 250, 1),
+      rgba(233, 236, 239, 1), rgba(222, 226, 230), rgba(206, 212, 218, 1),rgba(206, 212, 218, 1),
+      rgba(206, 212, 218, 1),rgba(173, 181, 189, 1),
+    );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 20px;
+
+  text-decoration: none;
+  text-align: center;
+}
+
+.Cerrar_Sesion {
+
+}
+
+.Cerrar_Sesion button {
+  border-color: inherit;
+  background-color: inherit;
+  border: none;
+}
+
+.Cerrar_Sesion button p{
+  font-size: 16px;
+  color: white;
+  font-weight: 700;
+  padding: 0;
+  margin: 0;
+}
+
+.Cerrar_Sesion_img {
+  width: 20%;
+  height: 25%;
+}
