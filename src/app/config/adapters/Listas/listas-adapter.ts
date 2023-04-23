@@ -9,11 +9,12 @@ import { ListasPort } from '../../ports/listas/listas-ports';
   providedIn: 'root'
 })
 export class ListasAdapter implements ListasPort {
+  api = environment.apiUrl+'/Listas/';
   constructor(private http: HttpClient) {}
 
-  getListasAll(): Observable<Listas_Entity[]> {
+  getListaByID(id: String): Observable<Listas_Entity> {
     let header = new HttpHeaders().set('Type-content', 'aplication/json');
-    return this.http.get<Array<Listas_Entity>>('${environment.apiUrl}/Listas_Entity/', { headers: header });
+    return this.http.get<Listas_Entity>(this.api+id, { headers: header });
   }
 }
 

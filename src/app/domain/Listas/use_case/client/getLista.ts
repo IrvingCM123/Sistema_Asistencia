@@ -12,9 +12,10 @@ export class GetListasUseCase {
 
   constructor (private _listasGateway: ListasPort) {}
 
-  getListasAll (): Observable <Array<Listas_Entity>>  {
-    return this. _listasGateway.getListasAll();
+  getListaByID (id: string) : Observable <Listas_Entity> {
+    return this._listasGateway.getListaByID(id);
   }
+
 
 }
 

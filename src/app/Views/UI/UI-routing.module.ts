@@ -4,13 +4,15 @@ import { InicioComponent } from './inicio';
 import { OperacionMateriaComponent } from './operacion-materia';
 import { ListadoComponent } from './listado/listado.component';
 import { BajaMateriaComponent } from './baja-materia';
+import { Listas } from './listas';
 
 const routes: Routes = [
   { path: '', redirectTo: 'Inicio', pathMatch: 'full' },
   { path: 'Inicio', component: InicioComponent },
-  { path: 'Alta_Materia', component: OperacionMateriaComponent },
-  { path: 'Baja_Materia', component: BajaMateriaComponent },
-  { path: 'Listado', component: ListadoComponent }
+  { path: 'Inicio/Alta_Materia', component: OperacionMateriaComponent },
+  { path: 'Inicio/Baja_Materia', component: BajaMateriaComponent },
+  { path: 'Inicio/Listado', component: ListadoComponent },
+  { path: 'Inicio/Listas', component: Listas}
 ];
 
 @NgModule({
