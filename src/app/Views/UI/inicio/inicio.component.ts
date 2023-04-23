@@ -14,7 +14,7 @@ export class InicioComponent implements OnInit {
   constructor( private _getMateriasCasosUso : GetMateriaUseCase, private enviarNRC: DatosService) { }
   response$ :any ;
   datos: any ;
-  dato:number = 1231231;
+  dato:number = 0;
 
   ngOnInit(): void {
     this.response$ = this._getMateriasCasosUso.getMateriasAll();
