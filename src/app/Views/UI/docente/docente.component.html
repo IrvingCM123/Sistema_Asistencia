@@ -7,11 +7,11 @@
             <div class="image">
               <div class="circle-1"></div>
               <div class="circle-2"></div>
-              <img *ngIf="!datos?.title" src="{{datos.img }}" alt="" width="70" height="70">
+              <img src="{{ datos.img }}" alt="" width="70" height="70">
             </div>
 
             <div class="actions">
-              <div *ngIf="!datos?.title" class="btn hvr-underline-from-center name"> {{datos.nombre_docente}} </div>
+              <div class="btn hvr-underline-from-center name"> {{datos.nombre_docente}} </div>
               <div class="btn hvr-underline-from-center info">Catedratico de la Universidad Veracruzana</div>
             </div>
 

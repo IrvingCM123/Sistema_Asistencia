@@ -1,32 +1,18 @@
-
-
-<label for="filtro">Filtrar:</label>
-<select id="filtro" [(ngModel)]="estado" (change)="filtrarItems()">
-  <option value="todos">Todos</option>
-  <option value="presente">Presente</option>
-  <option value="no-presente">No Presente</option>
-</select>
-
-<table class="table caption-top">
-  <caption>List of users</caption>
+<table *ngIf="datosCargados; async">
   <thead>
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Matricula</th>
-      <th scope="col">Alumno</th>
-      <th scope="col">Status</th>
-      <th scope="col">Carrera</th>
-      <th scope="col">Asistencia</th>
+      <th>Matrícula</th>
+      <th>Nombre</th>
+      <th>Hora</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let alu of itemsFiltrados; let id = index">
-      <td> {{id +1}} </td>
-      <td> {{alu.matricula}} </td>
-      <td> {{alu.nombre}} </td>
-      <td> {{alu.status}} </td>
-      <td> {{alu.Carrera}} </td>
-      <td> {{alu.Asistencia }} </td>
+    <tr *ngFor="let dato of datos; async">
+      <td>{{ dato.Matricula }}</td>
+      <td>{{ dato.Nombre }}</td>
+      <td>{{ dato.Hora }}</td>
+      <td>{{ dato.Status }}</td>
     </tr>
   </tbody>
 </table>
