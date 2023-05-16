@@ -33,21 +33,21 @@
   </div>
   <div class="contact-form">
     <form #operacionForm="ngForm" (ngSubmit)="submitOperacion()" (submit)="onSubmit($event)">
-      <label for="nombre"> Nombre </label>
+      <label for="numero"> Número de personal </label>
       <input
             type="text"
-            id="nombre"
-            name="nombre"
+            id="numero"
+            name="numero"
             maxlength="11"
             [(ngModel)]="operacion.numero"
             required
 
           />
-        <label for="apellido"> NRC</label>
+        <label for="NRC"> NRC de materia</label>
       <input
             type="text"
-            id="apellido"
-            name="apellido"
+            id="NRC"
+            name="NRC"
             maxlength="6"
             [(ngModel)]="operacion.nrc"
             required
