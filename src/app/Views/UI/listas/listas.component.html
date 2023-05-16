@@ -1,18 +1,23 @@
-<table *ngIf="datosCargados; async">
+<table class="table table-striped table-hover">
   <thead>
+    <h2>Lista de Asistencia</h2>
     <tr>
-      <th>Matrícula</th>
-      <th>Nombre</th>
-      <th>Hora</th>
+      <th>Indice</th>
+      <th>Alumno</th>
+      <th>Matricula</th>
+      <th>Carrera</th>
       <th>Status</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let dato of datos; async">
-      <td>{{ dato.Matricula }}</td>
-      <td>{{ dato.Nombre }}</td>
-      <td>{{ dato.Hora }}</td>
-      <td>{{ dato.Status }}</td>
-    </tr>
+    <ng-container *ngFor="let alumno_recibido of listaAsistencia; let i = index" >
+      <tr class="Datos">
+        <td>{{ i + 1 }}</td>
+        <td>{{ alumno_recibido.Matricula }}</td>
+        <td>{{ alumno_recibido.Nombre }}</td>
+        <td>{{ alumno_recibido.Carrera }}</td>
+        <td>{{ alumno_recibido.Status }}</td>
+      </tr>
+    </ng-container>
   </tbody>
 </table>

@@ -41,7 +41,6 @@ export class ListadoComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.NRC = this.recibirDato.getDato();
     console.log(this.NRC)
     const ruta = this.fechaFormateada;
     this.datosCollection = this.afs.collection<Dato>('JorgeDiaz/Sistemas en red/' + ruta);
