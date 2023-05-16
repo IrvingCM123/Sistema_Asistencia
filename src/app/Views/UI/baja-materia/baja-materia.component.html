@@ -1,74 +1,57 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-**********************" crossorigin="anonymous" />
 
-<main class="Contenedor_Formulario">
-  <section class="Formulario">
-    <header>
-      <h2>Formulario para Baja Materia</h2>
-      <p> Solicite una baja de materia a nuestro servicio administrativo. <br>
-      Si el proceso es aceptado, podrá ver que su materia solicitada dejará de aparecer en su apartado
-    de inicio</p>
-    </header>
-
-    <div class="Form">
-      <form #operacionForm="ngForm" (ngSubmit)="submitOperacion()" (submit)="onSubmit($event)">
-        <div>
-          <label for="apellido">Número del Personal:</label>
-          <input
+<div class="contact-form-container" style="border-radius: 1rem;">
+  <div class="contact-us" style="border-top-left-radius: 1rem;">
+    <div class="contact-header">
+      <h1>&#9135;&#9135;&#9135;&#9135; CONTACT US</h1>
+    </div>
+    <div class="social-bar">
+      <ul>
+        <li> <a href="https://www.facebook.com/" target="_blank"> <i class="fab fa-facebook-f"></i> </a> </li>
+        <li> <a href=""> <i class="fab fa-twitter"></i> </a> </li>
+        <li> <a href=""> <i class="fab fa-instagram"></i> </a> </li>
+        <li> <a href=""> <i class="fab fa-dribbble"></i> </a> </li>
+      </ul>
+    </div>
+  </div>
+  <div class="header">
+    <h1>Solicitar baja de materia!</h1>
+    <h2>Contactanos</h2>
+  </div>
+  <div class="address">
+    <i class="fas fa-map-marker-alt"></i>
+    <h3>602 ISW</h3>
+    <h3>USBI</h3>
+  </div>
+  <div class="phone">
+    <i class="fas fa-phone-alt"></i>
+    <h3>272-259-4250</h3>
+  </div>
+  <div class="email">
+    <i class="fas fa-envelope"></i>
+    <h3>zS20006735@estudiantes.uv.mx</h3>
+  </div>
+  <div class="contact-form">
+    <form #operacionForm="ngForm" (ngSubmit)="submitOperacion()" (submit)="onSubmit($event)">
+      <label for="numero"> Número de personal </label>
+      <input
             type="text"
-            id="nombre"
-            name="nombre"
+            id="numero"
+            name="numero"
             maxlength="11"
             [(ngModel)]="operacion.numero"
             required
-
           />
-        </div>
-        <div>
-          <label for="apellido">NRC de la materia:</label>
-          <input
+        <label for="NRC"> NRC de materia</label>
+      <input
             type="text"
-            id="apellido"
-            name="apellido"
+            id="NRC"
+            name="NRC"
             maxlength="6"
             [(ngModel)]="operacion.nrc"
             required
           />
-        </div>
-        <button type="submit" [disabled]="!operacionForm.valid">Enviar</button>
-      </form>
-    </div>
-  </section>
-
-  <section class="Contact_Info">
-    <div>
-      <header class="Contact_Info-Header">
-        Contact_Info
-      </header>
-
-      <div class="Contact_Info-Body">
-        <ul>
-          <p>
-            Student: <span> Irving Rafael CM</span>
-          </p>
-          <p>
-            Email : <span> Irving.CondeM@Gmail.com </span>
-          </p>
-          <p>
-            Number: <span> 272-149-5728 </span>
-          </p>
-
-          <div style="margin-top: 2rem;"></div>
-
-          <p>
-            Student: <span> Adriel Eduardo PS</span>
-          </p>
-          <p>
-            Email : <span> #######@Gmail.com </span>
-          </p>
-          <p>
-            Number: <span> 272-###-#### </span>
-          </p>
-        </ul>
-      </div>
-    </div>
-  </section>
-</main>
+      <button type="submit" [disabled]="!operacionForm.valid">Enviar</button>
+    </form>
+  </div>
+</div>

@@ -1,7 +1,6 @@
 import { Docentes } from '../../models/Docentes.entity';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DocentesGateway } from '../../../models/Client/Class/Docentes.Gateway';
 import { DocentesPort } from 'src/app/config/ports/Docentes/docentes-ports';
 
 @Injectable({
