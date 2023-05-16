@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
-import { firebaseApp } from './config/firebase/fire-config';
 import { AngularFireAuthModule  } from '@angular/fire/compat/auth';
 import { FirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -26,11 +25,12 @@ import { ListasAdapter } from './config/adapters/Listas/listas-adapter';
 
 import { MateriasPort } from './config/ports/Materias/materias-port';
 import { MateriasAdapter } from './config/adapters/Materias/materias-adapter';
-import { Listas } from './Views/UI/listas/listas.component';
 import { BajaMateriaComponent } from './Views/UI/baja-materia/baja-materia.component';
-import { initializeApp } from 'firebase/app';
 import { environment } from 'src/environments/environment';
 import { CommonModule } from '@angular/common';
+import { FormularioPort } from './config/ports/Formularios/formulario-ports';
+import { FormulariosAdapter } from './config/adapters/Formularios/formularios-adapter';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 
 @NgModule({
@@ -51,6 +51,7 @@ import { CommonModule } from '@angular/common';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     CommonModule,
   ],
   providers: [
@@ -58,6 +59,7 @@ import { CommonModule } from '@angular/common';
     {provide: DocentesPort, useClass: DocenteAdapter},
     {provide: MateriasPort, useClass: MateriasAdapter},
     {provide: ListasPort, useClass: ListasAdapter},
+    {provide: FormularioPort, useClass: FormulariosAdapter},
   ],
   bootstrap: [AppComponent]
 })
