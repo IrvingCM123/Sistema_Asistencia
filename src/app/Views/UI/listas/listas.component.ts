@@ -1,11 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-} from '@angular/fire/compat/firestore';
-import { Observable, Subscription } from 'rxjs';
-import { DatosServicel } from './DatosServiceL.Service';
 import { DatosService } from '../inicio/Datos.Service';
+import { FirestoreService } from './FirestoreListas.service';
 
 interface Dato {
   id?: string;
@@ -19,49 +14,24 @@ interface Dato {
   templateUrl: './listas.component.html',
   styleUrls: ['./listas.component.scss'],
 })
-export class Listas implements OnInit, OnDestroy {
-  N_Personal: any;
-  datos: Dato[] = [];
-  datosCollection: AngularFirestoreCollection<Dato> | undefined;
-  subscription: Subscription = new Subscription();
-  datosCargados = false;
-  items: any[] = [];
-
-  dia: number;
-  mes: number;
-  anio: number;
-  fechaFormateada: string;
+export class Listas implements OnInit {
+  listaAsistencia: any[] = [];
+  nrcMateria: any;
+  carrera: any;
 
   constructor(
-    readonly afs: AngularFirestore,
-    private recibirDato: DatosService,
-    private datosService: DatosServicel
+    private firestoreService: FirestoreService,
+    private datos: DatosService
   ) {
-    const fechaActual = new Date();
-    this.dia = fechaActual.getDate();
-    this.mes = fechaActual.getMonth() + 1;
-    this.anio = fechaActual.getFullYear();
-    this.fechaFormateada = `${this.anio}-${this.mes}-${this.dia}`;
-    this.N_Personal = this.datosService.getNPersonal();
-    console.log(this.N_Personal);
+    this.carrera = datos.getCarrera();
+    this.nrcMateria = datos.getNrc();
   }
 
-  ngOnInit(): void {
-    const nrc = this.recibirDato.getDato();
-    const prof = this.N_Personal;
-    const fecha = this.fechaFormateada;
-    this.datosCollection = this.afs.collection<Dato>(
-      prof + '/' + nrc + '/' + fecha
+  async ngOnInit() {
+    console.log(this.nrcMateria)
+    this.listaAsistencia = await this.firestoreService.getListaAsistencia(
+      this.nrcMateria,
+      this.carrera
     );
-    this.subscription.add(
-      this.datosCollection.valueChanges().subscribe((datos: Dato[]) => {
-        this.datos = datos;
-        this.datosCargados = true;
-      })
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 }
