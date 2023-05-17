@@ -15,7 +15,7 @@
           <h2><p><span *ngIf="!datos?.title"> {{materia.alumnos_materia}} </span><small>Estudiantes</small></p></h2>
         </div>
         <div class="follow-btn">
-          <button (click)="enviarDato(materia.nrc_materia)"  routerLink="Listas">Lista Asistencia</button>
+          <button (click)="enviarDato(materia.nrc_materia, materia.carrera_materia)"  routerLink="Listas">Lista Asistencia</button>
         </div>
       </div>
       <div *ngIf="!datos?.title" class="desc">Experiencia Educativa perteneciente al programa educativo de {{materia.carrera_materia}} en la {{materia.facultad_asignada}} </div>
