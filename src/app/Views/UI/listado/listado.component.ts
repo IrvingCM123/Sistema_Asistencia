@@ -1,56 +1,45 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { Observable, Subscription } from 'rxjs';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FirestoreService } from '../listas/FirestoreListas.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DatosService } from '../inicio/Datos.Service';
 
-
-interface Dato {
-  id?: string;
-  Hora: string;
+export interface Estructura {
   Matricula: string;
   Nombre: string;
-  Status: string;
+  Estado: string;
+  Hora: string;
 }
 
 @Component({
   selector: 'app-listado',
   templateUrl: './listado.component.html',
-  styleUrls: ['./listado.component.scss']
+  styleUrls: ['./listado.component.scss'],
 })
-export class ListadoComponent implements OnInit, OnDestroy {
-  NRC: any;
-  datos: Dato[] = [];
-  datosCollection: AngularFirestoreCollection<Dato> | undefined;
-  subscription: Subscription = new Subscription();
-  datosCargados = false;
-  items: any[] = [];
+export class ListadoComponent implements OnInit {
+  mostrarLista: Estructura[] = [];
+  listaAsistencia: any = [];
+  nrcMateria: string = '';
+  carrera: string = '';
+  datosCargados: boolean = false;
+  fechaCompleta: string;
 
-  dia: number;
-  mes: number;
-  anio: number;
-  fechaFormateada: string;
+  constructor(
+    private firestoreService: FirestoreService,
+    private datos: DatosService
+  ) {
+    this.carrera = datos.getCarrera();
+    this.nrcMateria = datos.getNrc();
 
-  constructor(readonly afs: AngularFirestore, private recibirDato: DatosService,) {
-    const fechaActual = new Date();
-    this.dia = fechaActual.getDate();
-    this.mes = fechaActual.getMonth() + 1;
-    this.anio = fechaActual.getFullYear();
-    this.fechaFormateada = `${this.anio}-${this.mes}-${this.dia}`;
-    console.log(this.fechaFormateada)
+    let fecha = new Date();
+    let dia = fecha.getDate();
+    let mes = fecha.getMonth() + 1;
+    let año = fecha.getFullYear();
+    this.fechaCompleta = año + ':' + mes + ':' + dia;
   }
 
-
-  ngOnInit(): void {
-    console.log(this.NRC)
-    const ruta = this.fechaFormateada;
-    this.datosCollection = this.afs.collection<Dato>('JorgeDiaz/Sistemas en red/' + ruta);
-    this.subscription.add(this.datosCollection.valueChanges().subscribe((datos: Dato[]) => {
-      this.datos = datos;
-      this.datosCargados = true;
-    }));
+  async ngOnInit() {
+    this.listaAsistencia = await this.firestoreService.getDatosLeidos(this.nrcMateria, this.fechaCompleta);
+    console.log('aa', this.listaAsistencia)
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
 }
