@@ -10,7 +10,6 @@ export class FirestoreService {
   private almacenar_NRC = new Subject<any>();
   private almacenar_Carrera = new Subject<any>();
   private almacenarDatosQRObservable = new Subject<any>();
-  private contador = new Subject<any>();
 
   constructor(
     private firestore: AngularFirestore
@@ -40,6 +39,20 @@ export class FirestoreService {
     if (lista_encontrada) {
       const datos_lista = lista_encontrada.docs.map((alumnos) => alumnos.data());
       return datos_lista;
+    } else {
+      console.log('No se pudo obtener la información de Firestore.');
+      return [];
+    }
+  }
+
+  async getCantidadEstudiantes(nrc: string, carrera: string) {
+    let url = '/' + carrera + '/Materias/' + nrc;
+    const lista_encontrada = await this.firestore.collection(url).get().toPromise();
+
+    if (lista_encontrada) {
+      const datos_lista = lista_encontrada.docs.map((alumnos) => alumnos.data());
+      let contador = datos_lista.length;
+      return contador;
     } else {
       console.log('No se pudo obtener la información de Firestore.');
       return [];

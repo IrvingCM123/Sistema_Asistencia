@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DatosService } from '../inicio/Datos.Service';
 import { FirestoreService } from './FirestoreListas.service';
+import { DatosServicel } from './DatosServiceL.Service';
 
 interface Dato {
   id?: string;
@@ -21,7 +22,7 @@ export class Listas implements OnInit {
 
   constructor(
     private firestoreService: FirestoreService,
-    private datos: DatosService
+    private datos: DatosService,
   ) {
     this.carrera = datos.getCarrera();
     this.nrcMateria = datos.getNrc();
