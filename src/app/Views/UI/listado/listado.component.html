@@ -1,0 +1,27 @@
+<div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Matricula</th>
+          <th>Nombre</th>
+          <th>Estado</th>
+          <th>Hora</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let alumno_recibido of listaAsistencia; let i = index">
+          <tr class="Datos" >
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ alumno_recibido.Matricula }}</td>
+            <td>{{ alumno_recibido.Nombre }}</td>
+            <td>{{ alumno_recibido.Estado }}</td>
+            <td>{{ alumno_recibido.Hora }}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+</div>
+
+
+

@@ -28,7 +28,7 @@ export class Listas implements OnInit {
   }
 
   async ngOnInit() {
-    console.log(this.nrcMateria)
+    console.log(this.nrcMateria, this.carrera)
     this.listaAsistencia = await this.firestoreService.getListaAsistencia(
       this.nrcMateria,
       this.carrera
