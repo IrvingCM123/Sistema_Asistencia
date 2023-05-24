@@ -32,12 +32,11 @@ export class FirestoreService {
   }
 
   async getListaAsistencia(nrc: string, carrera: string) {
-
     let url = '/' + carrera + '/Materias/' + nrc;
     const lista_encontrada = await this.firestore.collection(url).get().toPromise();
     console.log(lista_encontrada)
     if (lista_encontrada) {
-      const datos_lista = lista_encontrada.docs.map((alumnos) => alumnos.data());
+      const datos_lista = await lista_encontrada.docs.map((alumnos) => alumnos.data());
       console.log(datos_lista);
       return datos_lista;
     } else {
