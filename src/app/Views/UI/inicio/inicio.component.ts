@@ -32,8 +32,8 @@ export class InicioComponent implements OnInit {
   }
 
   async obtener_cantidadEstudiantes() {
-    let nrc: string[] | any = this.Materias.map( (materia: any) => materia.nrc_materia );
-    let carrera: string[] | any = this.Materias.map( (materia: any) => materia.carrera_materia );
+    let nrc: string[] | any = await this.Materias.map( (materia: any) => materia.nrc_materia );
+    let carrera: string[] | any = await this.Materias.map( (materia: any) => materia.carrera_materia );
 
     for (let a = 0; a <= nrc.length - 1; a++) {
       this.cantidad_alumnos[a] = await this.datos_Locales.getCantidadEstudiantes(nrc[a], carrera[a]);
