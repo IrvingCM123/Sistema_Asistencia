@@ -1,1 +1,32 @@
-<p>registro works!</p>
+<main>
+  <article>
+    <header>
+      <h1>¡Registro tu cuenta si aún no cuentas con ella!</h1>
+      <h2>dwadd</h2>
+    </header>
+
+    <section>
+      <!-- login.component.html -->
+      <div id="login-container">
+        <h2>Iniciar sesión</h2>
+        <form (submit)="login()">
+          <label for="username">Usuario:</label>
+          <input type="text" id="username" [(ngModel)]="username" required />
+
+          <label for="password">Contraseña:</label>
+          <input
+            type="password"
+            id="password"
+            [(ngModel)]="password"
+            required
+          />
+
+          <button type="submit"  routerLink="Listas">Iniciar sesión</button>
+        </form>
+        <p *ngIf="loginFailed" class="error">
+          Credenciales inválidas. Inténtalo de nuevo.
+        </p>
+      </div>
+    </section>
+  </article>
+</main>
