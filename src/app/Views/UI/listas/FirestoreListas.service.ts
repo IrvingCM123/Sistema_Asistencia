@@ -32,18 +32,24 @@ export class FirestoreService {
   }
 
   async getListaAsistencia(nrc: string, carrera: string) {
-
-    let url = '/' + carrera + '/Materias/' + nrc;
-    const lista_encontrada = await this.firestore.collection(url).get().toPromise();
-
-    if (lista_encontrada) {
-      const datos_lista = lista_encontrada.docs.map((alumnos) => alumnos.data());
-      return datos_lista;
-    } else {
-      console.log('No se pudo obtener la información de Firestore.');
+    try {
+      let url = '/' + carrera + '/Materias/' + nrc;
+      const lista_encontrada = await this.firestore.collection(url).get().toPromise();
+      console.log("Lista Asistencia", lista_encontrada);
+      if (lista_encontrada) {
+        const datos_lista = await lista_encontrada.docs.map((alumnos) => alumnos.data());
+        console.log("Dato", datos_lista);
+        return datos_lista;
+      } else {
+        console.log('No se pudo obtener la información de Firestore.');
+        return [];
+      }
+    } catch (error) {
+      console.error('Error al obtener la información de Firestore:', error);
       return [];
     }
   }
+
 
   async getCantidadEstudiantes(nrc: string, carrera: string) {
     let url = '/' + carrera + '/Materias/' + nrc;
