@@ -35,9 +35,10 @@ export class FirestoreService {
 
     let url = '/' + carrera + '/Materias/' + nrc;
     const lista_encontrada = await this.firestore.collection(url).get().toPromise();
-
+    console.log(lista_encontrada)
     if (lista_encontrada) {
       const datos_lista = lista_encontrada.docs.map((alumnos) => alumnos.data());
+      console.log(datos_lista);
       return datos_lista;
     } else {
       console.log('No se pudo obtener la información de Firestore.');
