@@ -7,9 +7,9 @@ import { Observable, Subject } from 'rxjs';
 })
 export class FirestoreService {
 
-  private almacenar_NRC = new Subject<any>();
-  private almacenar_Carrera = new Subject<any>();
-  private almacenarDatosQRObservable = new Subject<any>();
+  private loggedInSubject = new Subject<any>();
+  loggedIn$ = this.loggedInSubject.asObservable();
+  private docenteObservable = new Subject<any>();
 
   constructor(
     private firestore: AngularFirestore
@@ -21,14 +21,19 @@ export class FirestoreService {
 
   guardar_DatoLocal(indice: string, valor: any): void {
     localStorage.setItem(indice, valor);
+    console.log(valor, indice);
   }
 
-  Actualizar_NRC(): Observable<any> {
-    return this.almacenar_NRC.asObservable();
+  eliminar_DatoLocal(indice: string): void {
+    localStorage.removeItem(indice);
   }
 
-  Actualizar_Carrera(): Observable<any> {
-    return this.almacenar_Carrera.asObservable();
+  Actualizar_Login(loggedIn: boolean) {
+    this.loggedInSubject.next(loggedIn);
+  }
+
+  Actualizar_Docente(): Observable<any> {
+    return this.docenteObservable.asObservable();
   }
 
   async getListaAsistencia(nrc: string, carrera: string) {
