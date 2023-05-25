@@ -7,6 +7,12 @@
   box-sizing: border-box;
   background-attachment: fixed;
  }
+
+ #ContenedorLogin {
+  height: 200rem;
+  color: antiquewhite;
+  background-attachment: fixed;
+ }
 }
 
 
@@ -16,6 +22,8 @@ body {
   -webkit-background-size: cover;
   background-size: cover;
   background-attachment: fixed;
+  height: 100%;
+  width: 100%;
 }
 
 .imagen {
@@ -29,7 +37,12 @@ body {
   grid-template-rows: 140px 4fr;
   width: fit-content;
   height: fit-content;
+}
 
+#ContenedorLogin {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
 }
 
 #Navegacion {
@@ -64,4 +77,8 @@ body {
 
 }
 
+#Registro {
+  min-width: 100%;
+  min-height: 100%;
+}
 
