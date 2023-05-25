@@ -19,7 +19,6 @@ import { RegistroComponent } from './registro/registro.component';
     InicioComponent,
     OperacionMateriaComponent,
     Listas,
-    RegistroComponent,
   ]
 })
 

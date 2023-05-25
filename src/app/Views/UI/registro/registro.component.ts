@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../listas/FirestoreListas.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -8,7 +9,7 @@ import { FirestoreService } from '../listas/FirestoreListas.service';
 })
 export class RegistroComponent implements OnInit {
 
-  constructor(private datosLocales: FirestoreService) { }
+  constructor(private datosLocales: FirestoreService, private router: Router) { }
 
   username: string = "";
   password: string = "";
@@ -16,12 +17,10 @@ export class RegistroComponent implements OnInit {
   loggedIn: boolean = false;
 
   login(): void {
-    // Aquí puedes agregar la lógica para validar las credenciales ingresadas.
-    // Por simplicidad, este ejemplo compara el username con "admin" y la password con "password".
-
     if (this.username === "admin" && this.password === "password") {
       this.datosLocales.guardar_DatoLocal("loggedIn", true);
-      this.loggedIn = this.datosLocales.obtener_DatoLocal("loggedIn");
+      this.datosLocales.guardar_DatoLocal("DocenteID", 1);
+      this.router.navigate(['/Sistema/Inicio']);
     } else {
       this.datosLocales.guardar_DatoLocal("loggedIn", false);
       this.loginFailed = true;
