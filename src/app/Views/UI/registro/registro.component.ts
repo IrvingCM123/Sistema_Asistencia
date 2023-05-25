@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../listas/FirestoreListas.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-registro',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegistroComponent implements OnInit {
 
-  constructor(private datosLocales: FirestoreService, private router: Router) { }
+  constructor(private datosLocales: FirestoreService, private router: Router, private location: Location) { }
 
   username: string = "";
   password: string = "";
@@ -21,12 +23,17 @@ export class RegistroComponent implements OnInit {
       this.datosLocales.guardar_DatoLocal("loggedIn", true);
       this.datosLocales.guardar_DatoLocal("docenteId", 1);
       this.router.navigate(['/Sistema/Inicio']);
+
+      // Realiza una recarga de la página para reflejar el cambio de pestaña
+      this.location.go('/Sistema/Inicio');
+      location.reload();
     } else {
       this.datosLocales.guardar_DatoLocal("loggedIn", false);
       this.loginFailed = true;
       this.loggedIn = false;
     }
   }
+
 
   ngOnInit(): void {
 
