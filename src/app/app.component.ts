@@ -9,9 +9,6 @@ export class AppComponent {
 
   constructor (private datos_Locales: FirestoreService){};
 
-  response$: any ;
-  datos: any;
-  responseID$: any ;
   loggedIn: boolean = this.datos_Locales.obtener_DatoLocal('loggedIn');
   title = 'Sistema';
   showRegistro: boolean = true;
@@ -28,6 +25,8 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-    console.log(this.loggedIn, "a")
+    this.datos_Locales.loggedIn$.subscribe(loggedIn => {
+      this.loggedIn = loggedIn;
+    })
   }
 }

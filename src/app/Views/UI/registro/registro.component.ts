@@ -19,7 +19,7 @@ export class RegistroComponent implements OnInit {
   login(): void {
     if (this.username === "admin" && this.password === "password") {
       this.datosLocales.guardar_DatoLocal("loggedIn", true);
-      this.datosLocales.guardar_DatoLocal("DocenteID", 1);
+      this.datosLocales.guardar_DatoLocal("docenteId", 1);
       this.router.navigate(['/Sistema/Inicio']);
     } else {
       this.datosLocales.guardar_DatoLocal("loggedIn", false);

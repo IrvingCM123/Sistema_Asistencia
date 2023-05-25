@@ -22,10 +22,10 @@ export class DocenteComponent implements OnInit {
   N_Personal: string | any;
   datos: any;
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.Docente_ID = this.datos_Locales.obtener_DatoLocal("docenteId");
 
-    this.response$ = this._getDocentesCasosUso.getDocenteByID(this.Docente_ID);
+    this.response$ = await this._getDocentesCasosUso.getDocenteByID(this.Docente_ID);
     this.response$.subscribe((data: any) => {
       this.datos = data;
       this.N_Personal = data.numero_personal;

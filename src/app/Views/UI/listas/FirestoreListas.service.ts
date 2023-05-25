@@ -6,8 +6,9 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class FirestoreService {
-  
-  private loggedInObservable = new Subject<any>();
+
+  private loggedInSubject = new Subject<any>();
+  loggedIn$ = this.loggedInSubject.asObservable();
   private docenteObservable = new Subject<any>();
 
   constructor(
@@ -27,8 +28,8 @@ export class FirestoreService {
     localStorage.removeItem(indice);
   }
 
-  Actualizar_Login(): Observable<any> {
-    return this.loggedInObservable.asObservable();
+  Actualizar_Login(loggedIn: boolean) {
+    this.loggedInSubject.next(loggedIn);
   }
 
   Actualizar_Docente(): Observable<any> {
