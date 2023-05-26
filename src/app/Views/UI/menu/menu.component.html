@@ -1,8 +1,7 @@
 <main class="Navegador">
-
   <section class="Logo_Pagina">
     <div class="Logo_Pagina_img">
-      <img src="../../../../assets/menu/Escudo_Pagina.png" alt="">
+      <img src="../../../../assets/menu/Escudo_Pagina.png" alt="" />
     </div>
   </section>
 
@@ -15,18 +14,17 @@
   <section class="Opciones_Rutas">
     <div class="Rutas_Navegacion_Contenedor">
       <nav class="Rutas_Navegacion_Listado">
-        <a href="Sistema/Inicio">Inicio</a>
-        <a href="Sistema/Inicio/Listado">Listado</a>
-        <a href="Sistema/Inicio/Alta_Materia">Alta Materia </a>
-        <a href="Sistema/Inicio/Baja_Materia">Baja Materia </a>
+        <a [routerLink]="'/Sistema/Inicio'">Inicio</a>
+        <a [routerLink]="'/Sistema/Inicio/Listado'">Listado</a>
+        <a [routerLink]="'/Sistema/Inicio/Alta_Materia'">Alta Materia</a>
+        <a [routerLink]="'/Sistema/Inicio/Baja_Materia'">Baja Materia</a>
       </nav>
     </div>
   </section>
 
   <section class="Cuenta">
-    <img class="Cerrar_Sesion_img" src="../../../../assets/menu/Cuenta.png" alt="">
     <div class="Cerrar_Sesion">
-      <button> <p>Cerrar Sesion</p> </button>
+      <button type="submit" (click)="CerrarSesion()">Cerrar Sesion</button>
     </div>
   </section>
 </main>
