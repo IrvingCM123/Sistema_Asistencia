@@ -33,6 +33,13 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  CrearCuenta() {
+    this.datosLocales.Actualizar_Formulario('registro');
+    this.datosLocales.guardar_DatoLocal('formulario', 'registro');
+    this.location.go("/Sistema/Registro");
+    location.reload();
+  }
+
   updateUsername(event: Event): void {
     this.username = (event.target as HTMLInputElement).value;
   }

@@ -18,7 +18,6 @@ const routes: Routes = [
   { path: 'Inicio/Listado', component: ListadoComponent },
   { path: 'Inicio/Listas', component: Listas}
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],

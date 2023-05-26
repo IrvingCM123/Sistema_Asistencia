@@ -11,12 +11,15 @@
     </article>
   </Main>
 
-  <div *ngIf="loggedIn == false" id="ContenedorLogin">
-
-    <section id="Registro" >
-      <app-registro *ngIf="showRegistro" (iniciarSesion)="mostrarIniciarSesion()"></app-registro>
+  <div *ngIf="!loggedIn" id="ContenedorLogin">
+    <section id="Registro" *ngIf="formulario === 'registro' || formulario == ' ' ">
+      <app-registro (iniciarSesion)="mostrarIniciarSesion()"></app-registro>
     </section>
 
-    <!--<app-IniciarSesion *ngIf="showIniciarSesion" (registrarse)="mostrarRegistro()"></app-IniciarSesion> -->
+    <section id="Registro" *ngIf="formulario === 'login'">
+      <app-login (registrarse)="mostrarRegistro()"></app-login>
+    </section>
   </div>
 </body>
+
+{{formulario}}
