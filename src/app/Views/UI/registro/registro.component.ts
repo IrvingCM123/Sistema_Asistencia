@@ -19,14 +19,11 @@ export class RegistroComponent implements OnInit {
   loggedIn: boolean = false;
 
   CrearCuenta(): void {
-
     console.log("ejecutar", this.username, this.password);333
     if (this.username === "admin" && this.password === "password") {
       this.datosLocales.Actualizar_Login(true);
       this.datosLocales.guardar_DatoLocal("docenteId", 1);
-      //this.router.navigate(['/Sistema/Inicio']);
-      this.location.go('/Sistema/Inicio');
-      location.reload();
+      this.router.navigate(['/Sistema/Inicio/Listas']); // Navegar a la ruta 'Listas' después de crear la cuenta
     } else {
       this.datosLocales.Actualizar_Login(false);
       this.loginFailed = true;
@@ -35,9 +32,9 @@ export class RegistroComponent implements OnInit {
   }
 
   IniciarSesion() {
-    this.datosLocales.Actualizar_Formulario(true);
-    this.datosLocales.guardar_DatoLocal("formulario", true);
-    this.location.go("/Sistema/Login")
+    this.datosLocales.Actualizar_Formulario('login');
+    this.datosLocales.guardar_DatoLocal('formulario', 'login');
+    this.location.go("/Sistema/Login");
     location.reload();
   }
 
@@ -49,10 +46,8 @@ export class RegistroComponent implements OnInit {
     this.password = (event.target as HTMLInputElement).value;
   }
 
-
   ngOnInit(): void {
     this.datosLocales.Actualizar_Login(false);
   }
-
 
 }
