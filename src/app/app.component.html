@@ -1,20 +1,22 @@
 <body>
+  <Main id="Contenedor" *ngIf="loggedIn">
+    <Article id="Navegacion">
+      <app-menu></app-menu>
+    </Article>
+    <article id="Informacion_Docente">
+      <app-docente></app-docente>
+    </article>
+    <article id="Pantalla_Informacion">
+      <router-outlet></router-outlet>
+    </article>
+  </Main>
 
-<Main id="Contenedor">
+  <div *ngIf="loggedIn == false" id="ContenedorLogin">
 
-  <Article id="Navegacion" >
-    <app-menu> </app-menu>
-  </Article>
+    <section id="Registro" >
+      <app-registro *ngIf="showRegistro" (iniciarSesion)="mostrarIniciarSesion()"></app-registro>
+    </section>
 
-  <article id="Informacion_Docente">
-    <app-docente> </app-docente>
-  </article>
-
-  <article id="Pantalla_Informacion">
-    <router-outlet></router-outlet>
-  </article>
-
-
-</Main>
-
+    <!--<app-IniciarSesion *ngIf="showIniciarSesion" (registrarse)="mostrarRegistro()"></app-IniciarSesion> -->
+  </div>
 </body>

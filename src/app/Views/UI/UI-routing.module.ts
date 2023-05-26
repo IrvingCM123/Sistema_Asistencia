@@ -5,9 +5,13 @@ import { OperacionMateriaComponent } from './operacion-materia';
 import { ListadoComponent } from './listado/listado.component';
 import { BajaMateriaComponent } from './baja-materia';
 import { Listas } from './listas';
+import { RegistroComponent } from './registro/registro.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'Inicio', pathMatch: 'full' },
+  { path: '', redirectTo: 'Registro', pathMatch: 'full' },
+  { path: 'Registro', component: RegistroComponent },
+  { path: 'Login', component: LoginComponent},
   { path: 'Inicio', component: InicioComponent },
   { path: 'Inicio/Alta_Materia', component: OperacionMateriaComponent },
   { path: 'Inicio/Baja_Materia', component: BajaMateriaComponent },
