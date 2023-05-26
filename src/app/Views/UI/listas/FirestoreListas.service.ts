@@ -9,7 +9,12 @@ export class FirestoreService {
 
   private loggedInSubject = new Subject<any>();
   loggedIn$ = this.loggedInSubject.asObservable();
-  private docenteObservable = new Subject<any>();
+
+  private docenteSubject = new Subject<any>();
+  docente$ = this.docenteSubject.asObservable();
+
+  private formularioSubject = new Subject<any>();
+  formulario$ = this.formularioSubject.asObservable();
 
   constructor(
     private firestore: AngularFirestore
@@ -32,8 +37,12 @@ export class FirestoreService {
     this.loggedInSubject.next(loggedIn);
   }
 
-  Actualizar_Docente(): Observable<any> {
-    return this.docenteObservable.asObservable();
+  Actualizar_Docente(docente: string | number) {
+    this.docenteSubject.next(docente);
+  }
+
+  Actualizar_Formulario(formulario: string | any) {
+    this.formularioSubject.next(formulario);
   }
 
   async getListaAsistencia(nrc: string, carrera: string) {
