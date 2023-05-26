@@ -1,25 +1,20 @@
-<div class="overlay" style="padding-top: 1rem;">
-
-  <form>
+<div class="overlay">
+  <form (submit)="login()">
     <div class="con">
-
       <header class="head-form">
-        <h2>Registrar Cuenta</h2>
-        <p>Ingresa los datos solicitados</p>
+        <h2>Log In</h2>
+        <p>login here using your username and password</p>
       </header>
-
       <br />
       <div class="field-set">
-
         <span class="input-item">
           <i class="fa fa-user-circle"></i>
         </span>
-
         <input
           class="form-input"
           id="txt-input"
           type="email"
-          placeholder="@Usuario"
+          placeholder="@UserName"
           [value]="username"
           (input)="updateUsername($event)"
           required
@@ -30,7 +25,6 @@
         <span class="input-item">
           <i class="fa fa-key"></i>
         </span>
-
         <input
           class="form-input"
           type="password"
@@ -41,27 +35,23 @@
           (input)="updatePassword($event)"
           required
         />
-
         <span>
           <i class="fa fa-eye" aria-hidden="true" type="button" id="eye"></i>
         </span>
 
         <br />
-        <button class="log-in" (click)="CrearCuenta()" routerLink="Listas">Iniciar Sesión</button>
+        <button class="log-in" type="submit" routerLink="Listas">Log In</button>
         <p *ngIf="loginFailed" class="error">
           Credenciales inválidas. Inténtalo de nuevo.
         </p>
       </div>
 
       <div class="other">
-
-        <button class="btn submits frgt-pass">Recuperar Contraseña</button>
-
-        <button class="btn submits sign-up" (click)="IniciarSesion()">
-          Iniciar Sesión!
+        <button class="btn submits frgt-pass">Forgot Password</button>
+        <button class="btn submits sign-up">
+          Sign Up
           <i class="fa fa-user-plus" aria-hidden="true"></i>
         </button>
-
       </div>
     </div>
   </form>

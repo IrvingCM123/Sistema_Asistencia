@@ -1,15 +1,14 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../listas/FirestoreListas.service';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-registro',
-  templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.scss'],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class RegistroComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   constructor(private datosLocales: FirestoreService, private router: Router, private location: Location) { }
 
@@ -18,7 +17,7 @@ export class RegistroComponent implements OnInit {
   loginFailed: boolean = false;
   loggedIn: boolean = false;
 
-  CrearCuenta(): void {
+  login(): void {
 
     console.log("ejecutar", this.username, this.password);333
     if (this.username === "admin" && this.password === "password") {
@@ -32,13 +31,6 @@ export class RegistroComponent implements OnInit {
       this.loginFailed = true;
       this.loggedIn = false;
     }
-  }
-
-  IniciarSesion() {
-    this.datosLocales.Actualizar_Formulario(true);
-    this.datosLocales.guardar_DatoLocal("formulario", true);
-    this.location.go("/Sistema/Login")
-    location.reload();
   }
 
   updateUsername(event: Event): void {
