@@ -8,6 +8,7 @@ import { ListadoComponent } from './listado/listado.component';
 import { FormsModule } from '@angular/forms';
 import { Listas } from './listas/listas.component';
 import { RegistroComponent } from './registro/registro.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [

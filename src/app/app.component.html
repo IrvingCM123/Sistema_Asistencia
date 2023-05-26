@@ -11,9 +11,9 @@
     </article>
   </Main>
 
-  <div *ngIf="loggedIn == false">
+  <div *ngIf="loggedIn == false" id="ContenedorLogin">
 
-    <section class="Registro">
+    <section id="Registro" >
       <app-registro *ngIf="showRegistro" (iniciarSesion)="mostrarIniciarSesion()"></app-registro>
     </section>
 
