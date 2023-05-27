@@ -24,6 +24,7 @@ export class RegistroComponent implements OnInit {
       this.datosLocales.Actualizar_Login(true);
       this.datosLocales.guardar_DatoLocal("docenteId", 1);
       this.router.navigate(['/Sistema/Inicio/Listas']); // Navegar a la ruta 'Listas' después de crear la cuenta
+      
     } else {
       this.datosLocales.Actualizar_Login(false);
       this.loginFailed = true;

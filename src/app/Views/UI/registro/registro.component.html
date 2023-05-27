@@ -1,6 +1,5 @@
 <div class="overlay" style="padding-top: 1rem;">
-
-  <form>
+  <form style="padding-top: 0;">
     <div class="con">
 
       <header class="head-form">
@@ -8,7 +7,6 @@
         <p>Ingresa los datos solicitados</p>
       </header>
 
-      <br />
       <div class="field-set">
 
         <span class="input-item">
@@ -46,16 +44,73 @@
           <i class="fa fa-eye" aria-hidden="true" type="button" id="eye"></i>
         </span>
 
+        <br/>
+
+        <span class="input-item">
+          <i class="fa fa-user-circle"></i>
+        </span>
+
+        <input
+          class="form-input"
+          id="txt-input"
+          type="email"
+          placeholder="User Name"
+          [value]="username"
+          (input)="updateUsername($event)"
+          required
+        />
+
         <br />
-        <button class="log-in" (click)="CrearCuenta()" routerLink="Listas">Iniciar Sesión</button>
-        <p *ngIf="loginFailed" class="error">
-          Credenciales inválidas. Inténtalo de nuevo.
-        </p>
+
+        <span class="input-item">
+          <i class="fa fa-user-circle"></i>
+        </span>
+
+        <input
+          class="form-input"
+          id="txt-input"
+          type="email"
+          placeholder="User Name"
+          [value]="username"
+          (input)="updateUsername($event)"
+          required
+        />
+
+        <br />
+
+        <span class="input-item">
+          <i class="fa fa-user-circle"></i>
+        </span>
+
+        <input
+          class="form-input"
+          id="txt-input"
+          type="email"
+          placeholder="User Name"
+          [value]="username"
+          (input)="updateUsername($event)"
+          required
+        />
+
+        <br />
+
+        <input
+          class="form-input"
+          id="txt-input"
+          type="file"
+          placeholder="User Name"
+          [value]="username"
+          (input)="updateUsername($event)"
+          required
+        />
+
+        <br />
+
+        <button class="log-in" (click)="CrearCuenta()" routerLink="Listas">Crear Cuenta</button>
       </div>
 
       <div class="other">
 
-        <button class="btn submits frgt-pass">Recuperar Contraseña</button>
 
         <button class="btn submits sign-up" (click)="IniciarSesion()">
           Iniciar Sesión!
