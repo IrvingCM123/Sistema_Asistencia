@@ -8,8 +8,8 @@ import { FirestoreService } from './Views/UI/listas/FirestoreListas.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  loggedIn: boolean = this.datosLocales.obtener_DatoLocal('login');
-  formulario: string = this.datosLocales.obtener_DatoLocal('formulario'); // Deja el valor inicial vacío
+  loggedIn: boolean = false;
+  formulario: string = ''; 
 
   constructor(private router: Router, private datosLocales: FirestoreService) {
 
@@ -53,6 +53,16 @@ export class AppComponent {
         }
       }
     });
+
+    const cachedLoggedIn = this.datosLocales.obtener_DatoLocal('login');
+    if (cachedLoggedIn) {
+      this.loggedIn = cachedLoggedIn;
+    }
+
+    const cachedFormulario = this.datosLocales.obtener_DatoLocal('formulario');
+    if (cachedFormulario) {
+      this.formulario = cachedFormulario;
+    }
 
     this.datosLocales.loggedIn$.subscribe(loggedIn => {
       this.loggedIn = loggedIn;

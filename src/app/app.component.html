@@ -13,7 +13,7 @@
   </Main>
 
   <div *ngIf="!loggedIn" id="ContenedorLogin">
-    <section id="Registro" *ngIf="formulario === 'registro' || formulario == ' ' ">
+    <section id="Registro" *ngIf="formulario === 'registro' || formulario == '' ">
       <app-registro (iniciarSesion)="mostrarIniciarSesion()"></app-registro>
     </section>
 
@@ -22,6 +22,3 @@
     </section>
   </div>
 </body>
-
-
-{{formulario}}
