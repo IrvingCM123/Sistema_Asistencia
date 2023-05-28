@@ -1,6 +1,5 @@
 <div class="overlay" style="padding-top: 1rem;">
-
-  <form>
+  <form style="padding-top: 0;">
     <div class="con">
 
       <header class="head-form">
@@ -8,22 +7,22 @@
         <p>Ingresa los datos solicitados</p>
       </header>
 
-      <br />
       <div class="field-set">
 
         <span class="input-item">
           <i class="fa fa-user-circle"></i>
         </span>
 
-        <input
-          class="form-input"
-          id="txt-input"
-          type="email"
-          placeholder="@Usuario"
-          [value]="username"
-          (input)="updateUsername($event)"
-          required
-        />
+        <input class="form-input" id="txt-input" type="email" placeholder="@Correo" [value]="correo_usuario"
+          (input)="updateCorreo($event)" required />
+        <br />
+
+        <span class="input-item">
+          <i class="fa fa-key"></i>
+        </span>
+
+        <input class="form-input" type="password" id="pwd" name="password" placeholder="Contraseña"
+          [value]="contrasena_usuario" (input)="updateContrasena($event)" required />
 
         <br />
 
@@ -31,31 +30,33 @@
           <i class="fa fa-key"></i>
         </span>
 
-        <input
-          class="form-input"
-          type="password"
-          id="pwd"
-          name="password"
-          placeholder="••••••••••••"
-          [value]="password"
-          (input)="updatePassword($event)"
-          required
-        />
-
-        <span>
-          <i class="fa fa-eye" aria-hidden="true" type="button" id="eye"></i>
-        </span>
+        <input class="form-input" type="password" id="pwd" name="password" placeholder="Confirmar Contraseña"
+          [value]="confirmar_contrasena" (input)="confirmarContrasena($event)" required />
 
         <br />
-        <button class="log-in" (click)="CrearCuenta()" routerLink="Listas">Iniciar Sesión</button>
-        <p *ngIf="loginFailed" class="error">
-          Credenciales inválidas. Inténtalo de nuevo.
-        </p>
+
+        <span class="input-item">
+          <i class="fa fa-user-circle"></i>
+        </span>
+
+        <input class="form-input" id="txt-input" type="text" placeholder="Nombre Docente" [value]="nombre_usuario"
+          (input)="updateNombreUsuario($event)" required />
+        <br />
+
+        <span class="input-item">
+          <i class="fa fa-user-circle"></i>
+        </span>
+
+        <input class="form-input" id="txt-input" type="text" placeholder="NumeroPersonal" [value]="NPersonal_usuario"
+          (input)="updateNumeroPersonal($event)" required />
+        <br />
+
+        <button class="log-in" (click)="CrearCuenta()" routerLink="Listas">
+          Crear Cuenta
+        </button>
       </div>
 
       <div class="other">
-
-        <button class="btn submits frgt-pass">Recuperar Contraseña</button>
 
         <button class="btn submits sign-up" (click)="IniciarSesion()">
           Iniciar Sesión!
