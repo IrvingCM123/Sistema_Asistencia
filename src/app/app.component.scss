@@ -17,13 +17,14 @@
 
 
 body {
-  background: url('../assets/menu/Formulario.jpeg');
-  background-color: rgba(227, 242, 253, $alpha: 1);
-  -webkit-background-size: cover;
-  background-size: cover;
+  background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
+  background-image: linear-gradient(to top, rgb(168, 237, 234) 0%, #fed6e3 100%);
   background-attachment: fixed;
-  height: 100%;
-  width: 100%;
+  background-repeat: no-repeat;
+
+  font-family: "Vibur", cursive;
+  font-family: "Abel", sans-serif;
+  opacity: 0.95;
 }
 
 .imagen {
