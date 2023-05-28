@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable, Subject } from 'rxjs';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -19,11 +18,9 @@ export class FirestoreService {
   constructor(
     private firestore: AngularFirestore
   ) { }
-
   obtener_DatoLocal(indice: string): any {
     return localStorage.getItem(indice);
   }
-
   guardar_DatoLocal(indice: string, valor: any): void {
     localStorage.setItem(indice, valor);
     console.log(valor, indice);
@@ -63,12 +60,9 @@ export class FirestoreService {
       return [];
     }
   }
-
-
   async getCantidadEstudiantes(nrc: string, carrera: string) {
     let url = '/' + carrera + '/Materias/' + nrc;
     const lista_encontrada = await this.firestore.collection(url).get().toPromise();
-
     if (lista_encontrada) {
       const datos_lista = lista_encontrada.docs.map((alumnos) => alumnos.data());
       let contador = datos_lista.length;
@@ -78,12 +72,10 @@ export class FirestoreService {
       return [];
     }
   }
-
   async getDatosLeidos(nrc: string, dia:any) {
     let url = '/Registro/Asistencia/' + nrc + '/' + dia + '/Alumnos'
     console.log(dia)
     const obtener_datos = await this.firestore.collection(url).get().toPromise();
-
     if (obtener_datos) {
       const datos_leidos = obtener_datos.docs.map((datos) => datos.data());
       console.log(datos_leidos)
@@ -93,5 +85,4 @@ export class FirestoreService {
       return [];
     }
   }
-
 }

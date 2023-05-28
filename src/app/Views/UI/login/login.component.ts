@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   login(): void {
 
-    console.log("ejecutar", this.username, this.password);333
+    console.log("ejecutar", this.username, this.password); 333
     if (this.username === "admin" && this.password === "password") {
       this.datosLocales.Actualizar_Login(true);
       this.datosLocales.guardar_DatoLocal("docenteId", 1);
@@ -31,6 +31,27 @@ export class LoginComponent implements OnInit {
       this.loginFailed = true;
       this.loggedIn = false;
     }
+  }
+
+  IniciarSesion(): void {
+    console.log("ejecutar", this.username, this.password); 333
+    if (this.username === "admin" && this.password === "password") {
+      this.datosLocales.Actualizar_Login(true);
+      this.datosLocales.guardar_DatoLocal('login', true);
+      this.datosLocales.guardar_DatoLocal("docenteId", 1);
+      this.router.navigate(['/Sistema/Inicio/']);
+    } else {
+      this.datosLocales.Actualizar_Login(false);
+      this.loginFailed = true;
+      this.loggedIn = false;
+    }
+  }
+
+  CrearCuenta() {
+    this.datosLocales.Actualizar_Formulario('registro');
+    this.datosLocales.guardar_DatoLocal('formulario', 'registro');
+    this.location.go("/Sistema/Registro");
+    location.reload();
   }
 
   updateUsername(event: Event): void {
