@@ -8,10 +8,31 @@ import { FirestoreService } from './Views/UI/listas/FirestoreListas.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  loggedIn: boolean = false;
+  loggedIn: boolean = this.datosLocales.obtener_DatoLocal('login');
   formulario: string = this.datosLocales.obtener_DatoLocal('formulario'); // Deja el valor inicial vacío
 
-  constructor(private router: Router, private datosLocales: FirestoreService) {}
+  constructor(private router: Router, private datosLocales: FirestoreService) {
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const path = event.urlAfterRedirects.split('/')[1];
+        if (path === 'Registro') {
+          this.formulario = 'registro';
+        } else if (path === 'Login') {
+          this.formulario = 'login';
+        }
+      }
+    });
+
+    const docenteId = this.datosLocales.obtener_DatoLocal('docenteId');
+    if (docenteId) {
+      this.router.navigate(['Sistema/Inicio']);
+      this.loggedIn = true;
+    } else {
+      this.router.navigate(['Sistema/Registro']);
+      this.loggedIn = false;
+    }
+  }
 
   mostrarIniciarSesion(): void {
     this.formulario = 'login';
@@ -40,13 +61,5 @@ export class AppComponent {
     this.datosLocales.formulario$.subscribe(formulario => {
       this.formulario = formulario;
     });
-
-    // Establece el formulario inicial basado en la URL actual
-    const path = this.router.url.split('/')[1];
-    if (path === 'Registro') {
-      this.formulario = 'registro';
-    } else if (path === 'Login') {
-      this.formulario = 'login';
-    }
   }
 }

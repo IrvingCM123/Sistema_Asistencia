@@ -6,9 +6,10 @@
     <article id="Informacion_Docente">
       <app-docente></app-docente>
     </article>
-    <article id="Pantalla_Informacion">
+    <article id="Pantalla_Informacion" >
       <router-outlet></router-outlet>
     </article>
+
   </Main>
 
   <div *ngIf="!loggedIn" id="ContenedorLogin">
@@ -21,3 +22,6 @@
     </section>
   </div>
 </body>
+
+
+{{formulario}}

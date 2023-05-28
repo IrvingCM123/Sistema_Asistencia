@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   login(): void {
 
-    console.log("ejecutar", this.username, this.password);333
+    console.log("ejecutar", this.username, this.password); 333
     if (this.username === "admin" && this.password === "password") {
       this.datosLocales.Actualizar_Login(true);
       this.datosLocales.guardar_DatoLocal("docenteId", 1);
@@ -34,9 +34,10 @@ export class LoginComponent implements OnInit {
   }
 
   IniciarSesion(): void {
-    console.log("ejecutar", this.username, this.password);333
+    console.log("ejecutar", this.username, this.password); 333
     if (this.username === "admin" && this.password === "password") {
       this.datosLocales.Actualizar_Login(true);
+      this.datosLocales.guardar_DatoLocal('login', true);
       this.datosLocales.guardar_DatoLocal("docenteId", 1);
       this.router.navigate(['/Sistema/Inicio/']);
     } else {

@@ -13,23 +13,16 @@ export class RegistroComponent implements OnInit {
 
   constructor(private datosLocales: FirestoreService, private router: Router, private location: Location) { }
 
-  username: string = "";
-  password: string = "";
-  loginFailed: boolean = false;
-  loggedIn: boolean = false;
+  nombre_usuario: string = "";
+  correo_usuario: string = "";
+  contrasena_usuario: string = "";
+  confirmar_contrasena: string = "";
+  NPersonal_usuario: string = "";
+  imagen_usuario: string | any;
+
 
   CrearCuenta(): void {
-    console.log("ejecutar", this.username, this.password);333
-    if (this.username === "admin" && this.password === "password") {
-      this.datosLocales.Actualizar_Login(true);
-      this.datosLocales.guardar_DatoLocal("docenteId", 1);
-      this.router.navigate(['/Sistema/Inicio/Listas']); // Navegar a la ruta 'Listas' después de crear la cuenta
-      
-    } else {
-      this.datosLocales.Actualizar_Login(false);
-      this.loginFailed = true;
-      this.loggedIn = false;
-    }
+    console.log("ejecutar", this.nombre_usuario, this.correo_usuario);
   }
 
   IniciarSesion() {
@@ -39,12 +32,24 @@ export class RegistroComponent implements OnInit {
     location.reload();
   }
 
-  updateUsername(event: Event): void {
-    this.username = (event.target as HTMLInputElement).value;
+  updateNombreUsuario(event: Event): void {
+    this.nombre_usuario = (event.target as HTMLInputElement).value;
   }
 
-  updatePassword(event: Event): void {
-    this.password = (event.target as HTMLInputElement).value;
+  updateCorreo(event: Event): void {
+    this.correo_usuario = (event.target as HTMLInputElement).value;
+  }
+
+  updateContrasena(event: Event): void {
+    this.contrasena_usuario = (event.target as HTMLInputElement).value;
+  }
+
+  confirmarContrasena(event: Event): void {
+    this.confirmar_contrasena = (event.target as HTMLInputElement).value;
+  }
+
+  updateNumeroPersonal(event: Event): void {
+    this.NPersonal_usuario = (event.target as HTMLInputElement).value;
   }
 
   ngOnInit(): void {
