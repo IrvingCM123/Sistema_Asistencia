@@ -32,6 +32,7 @@ import { FormularioPort } from './config/ports/Formularios/formulario-ports';
 import { FormulariosAdapter } from './config/adapters/Formularios/formularios-adapter';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { RegistroComponent } from './Views/UI/registro/registro.component';
+import { LoginComponent } from './Views/UI/login/login.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { RegistroComponent } from './Views/UI/registro/registro.component';
     RegistroComponent,
     BajaMateriaComponent,
     ListadoComponent,
+    LoginComponent
   ],
   imports: [
     AngularFireAuthModule,

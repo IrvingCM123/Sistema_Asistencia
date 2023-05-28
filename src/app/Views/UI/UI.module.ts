@@ -22,5 +22,4 @@ import { LoginComponent } from './login/login.component';
     Listas,
   ]
 })
-
 export class UIModule { }
