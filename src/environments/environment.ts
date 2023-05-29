@@ -5,6 +5,7 @@
 export const environment = {
   production: true,
   apiUrl:'https://my-json-server.typicode.com/IrvingCM123/Consumir_Apis',
+  apiCuenta: 'http://localhost:2000/Servidor/RegistrarUsuarios/',
   apiMensaje: 'http://localhost:2000/Servidor/enviar/',
   firebase: {
     apiKey: 'AIzaSyBJwetPrTGU_1DS3YNvI5sL8FZNpXNWXjk',

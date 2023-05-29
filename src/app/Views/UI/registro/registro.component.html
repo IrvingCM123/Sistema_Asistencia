@@ -13,45 +13,37 @@
           <i class="fa fa-user-circle"></i>
         </span>
 
-        <input class="form-input" id="txt-input" type="email" placeholder="@Correo" [value]="correo_usuario"
-          (input)="updateCorreo($event)" required />
+        <input class="form-input" id="correo" type="email" placeholder="@Correo" [value]="correo_usuario"
+          (input)="actualizarCorreo($event)" required />
         <br />
 
         <span class="input-item">
           <i class="fa fa-key"></i>
         </span>
 
-        <input class="form-input" type="password" id="pwd" name="password" placeholder="Contraseña"
-          [value]="contrasena_usuario" (input)="updateContrasena($event)" required />
-
+        <input class="form-input" type="password" id="contraseña" name="password" placeholder="Contraseña"
+          [value]="contrasena_usuario" (input)="actualizarContrasena($event)" required />
         <br />
 
         <span class="input-item">
           <i class="fa fa-key"></i>
         </span>
 
-        <input class="form-input" type="password" id="pwd" name="password" placeholder="Confirmar Contraseña"
-          [value]="confirmar_contrasena" (input)="confirmarContrasena($event)" required />
-
+        <input class="form-input" type="password" id="confirmarContraseña" name="contraseña" placeholder="Confirmar Contraseña"
+          [value]="confirmar_contrasena" (input)="actualizarconfirmarContrasena($event)" required />
         <br />
 
         <span class="input-item">
           <i class="fa fa-user-circle"></i>
         </span>
 
-        <input class="form-input" id="txt-input" type="text" placeholder="Nombre Docente" [value]="nombre_usuario"
-          (input)="updateNombreUsuario($event)" required />
-        <br />
+        <input class="form-input" id="numeroPersonal" type="text" placeholder="NumeroPersonal" [value]="NPersonal_usuario"
+          (input)="actualizarNumeroPersonal($event)" required />
 
-        <span class="input-item">
-          <i class="fa fa-user-circle"></i>
-        </span>
+          <input style="margin-top: 1rem;" type="file" (change)="GuardarImagen($event)">
+          <img class="img-preview" *ngIf="imageURL" [src]="imageURL" alt="Imagen Subida">
 
-        <input class="form-input" id="txt-input" type="text" placeholder="NumeroPersonal" [value]="NPersonal_usuario"
-          (input)="updateNumeroPersonal($event)" required />
-        <br />
-
-        <button class="log-in" (click)="CrearCuenta()" routerLink="Listas">
+        <button class="log-in" (click)="CrearCuenta()">
           Crear Cuenta
         </button>
       </div>
@@ -66,32 +58,18 @@
       </div>
     </div>
   </form>
+
+  <div *ngIf="Mensaje_Contrasena" class="scan-success-message">
+    Las contraseñas no coinciden!!
+  </div>
+
+  <div *ngIf="Mostrar_Mensaje" class="scan-success-message">
+    {{Mensaje_Error}}
+  </div>
+
+  <div *ngIf="Mostrar_Mensaje_Cuenta" class="scan-success-message">
+    {{Mensaje_Error}}
+  </div>
+
+
 </div>
-
-<script>
-  function show() {
-    var p = document.getElementById("pwd");
-    p.setAttribute("type", "text");
-  }
-
-  function hide() {
-    var p = document.getElementById("pwd");
-    p.setAttribute("type", "password");
-  }
-
-  var pwShown = 0;
-
-  document.getElementById("eye").addEventListener(
-    "click",
-    function () {
-      if (pwShown == 0) {
-        pwShown = 1;
-        show();
-      } else {
-        pwShown = 0;
-        hide();
-      }
-    },
-    false
-  );
-</script>

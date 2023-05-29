@@ -2,18 +2,18 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { CuentasPort } from '../../ports/Formularios/formulario-ports';
-import { Cuentas_Entity } from 'src/app/domain/Formularios/models/Formulario.entity';
+import { MensajeriaPort } from '../../ports/Mensajeria/Mensajeria-ports';
+import { Mensajeria_Entity } from 'src/app/domain/Mensajeria/models/Mensajeria.entity';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CuentasAdapter implements CuentasPort {
-  apiUrl = environment.apiCuenta;
+export class MensajeriaAdapter implements MensajeriaPort {
+  apiUrl = environment.apiMensaje;
 
   constructor(private http: HttpClient) {}
 
-  postCuentas(Contenido: any): Observable<Cuentas_Entity> {
+  postMensajeria(Contenido: any): Observable<Mensajeria_Entity> {
     return this.http.post<any>(`${this.apiUrl}`, Contenido);
   }
 

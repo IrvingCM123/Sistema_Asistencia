@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { OperacionService } from './operacion.service';
-import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { GetMensajeriaUseCase } from 'src/app/domain/Mensajeria/usecase/postMensajeria';
 
 @Component({
   selector: 'app-baja-materia',
@@ -8,27 +8,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./baja-materia.component.scss']
 })
 export class BajaMateriaComponent {
-  operacion = {
+  mensajeContenido = {
     numero: '',
     nrc: '',
   };
 
   constructor(
-    private operacionService: OperacionService,
-    private router: Router
+    private _mensajeriaUseCase: GetMensajeriaUseCase,
+    private location: Location,
   ) {}
 
-  submitOperacion() {
-    this.operacionService.enviarOperacionPorCorreo(this.operacion).subscribe(
+  MandarMensaje() {
+    this._mensajeriaUseCase.postMensajeria(this.mensajeContenido).subscribe(
       (res) => console.log(res),
       (err) => console.log(err)
     );
   }
 
-  onSubmit(event: Event) {
+  public onSubmit(event: Event) {
     event.preventDefault();
-    this.router.navigateByUrl('/Sistema', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/']);
-    });
+    this.location.go;
   }
+
 }

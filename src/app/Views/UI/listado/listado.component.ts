@@ -1,3 +1,4 @@
+import { GetEscanerDatosUseCase } from './../../../domain/EscanerDatos/usecase/getEscanerDatos';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FirestoreService } from '../listas/FirestoreListas.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -25,6 +26,7 @@ export class ListadoComponent implements OnInit {
 
   constructor(
     private firestoreService: FirestoreService,
+    private _getDatos: GetEscanerDatosUseCase,
     private datos: DatosService
   ) {
     this.carrera = datos.getCarrera();
@@ -38,8 +40,7 @@ export class ListadoComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.listaAsistencia = await this.firestoreService.getDatosLeidos(this.nrcMateria, this.fechaCompleta);
-    console.log('aa', this.listaAsistencia)
+    this.listaAsistencia = await this._getDatos.getEscanerDatos(this.nrcMateria, this.fechaCompleta);
   }
 
 }

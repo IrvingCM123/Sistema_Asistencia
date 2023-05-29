@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { GetMateriaUseCase } from 'src/app/domain/Materia/usecase/client/getMateria';
 import { DatosService } from './Datos.Service';
 import { FirestoreService } from '../listas/FirestoreListas.service';
+import { GetListaAsistenciaUseCase } from 'src/app/domain/ListaAsistencia/usecase/getLista';
 
 @Component({
   selector: 'app-inicio',
@@ -15,6 +16,7 @@ export class InicioComponent implements OnInit {
 
   constructor(
     private _getMateriasCasosUso: GetMateriaUseCase,
+    private _getCantidadLista: GetListaAsistenciaUseCase,
     private obtenerDato: DatosService,
     private datos_Locales: FirestoreService
   ) {}
@@ -36,7 +38,7 @@ export class InicioComponent implements OnInit {
     let carrera: string[] | any = await this.Materias.map( (materia: any) => materia.carrera_materia );
 
     for (let a = 0; a <= nrc.length - 1; a++) {
-      this.cantidad_alumnos[a] = await this.datos_Locales.getCantidadEstudiantes(nrc[a], carrera[a]);
+      this.cantidad_alumnos[a] = await this._getCantidadLista.getCantidadListaAsistencia(nrc[a], carrera[a]);
     }
   }
 
