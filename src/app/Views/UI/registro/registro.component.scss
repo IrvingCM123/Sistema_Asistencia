@@ -163,7 +163,7 @@ button:hover {
   }
 }
 
-.scan-success-message {
+.MensajeMostrar {
   position: fixed;
   top: 50px;
   left: 50%;
@@ -173,6 +173,17 @@ button:hover {
   padding: 10px;
   border-radius: 5px;
   animation: fadeOut 2s ease-in-out forwards;
+}
+
+.MensajeMandar {
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff3300;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 @keyframes fadeOut {

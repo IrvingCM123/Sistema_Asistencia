@@ -21,6 +21,8 @@ export class RegistroComponent implements OnInit {
   Mensaje_Contrasena = false;
   Mostrar_Mensaje = false;
   Mostrar_Mensaje_Cuenta = false;
+  mostrarBotonAceptar: boolean = false;
+
 
   imageURL: string | any;
   Cuenta: string[] | any;
@@ -31,14 +33,13 @@ export class RegistroComponent implements OnInit {
     private location: Location,
     private storage: AngularFireStorage,
     private _cuentaCrear: PostCuentasUseCase
-  ) {
-  }
+  ) {}
 
   async CrearCuenta() {
     this.compararContraseña(this.contrasena_usuario, this.confirmar_contrasena);
 
     this.Cuenta = [
-      "Irving2133124",
+      'Irving2133124',
       this.NPersonal_usuario,
       this.correo_usuario,
       this.contrasena_usuario,
@@ -46,8 +47,15 @@ export class RegistroComponent implements OnInit {
 
     if (this.comparar == true) {
       this._cuentaCrear.postCuentas(this.Cuenta).subscribe(
-        (response) => { console.log(response); },
-        (error) => { console.error(error); }
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          this.Mensaje_Error = error.error;
+          console.log(this.Mensaje_Error)
+          this.Mostrar_Mensaje_Cuenta = true;
+          this.mostrarBotonAceptar = true;
+        }
       );
       await this.SubirImagenFirestore();
     } else {
@@ -57,6 +65,12 @@ export class RegistroComponent implements OnInit {
       }, 4000);
     }
   }
+
+  ocultarMensajeCuenta(): void {
+    this.Mostrar_Mensaje_Cuenta = false;
+    this.mostrarBotonAceptar = false;
+  }
+
 
   async SubirImagenFirestore() {
     if (this.file) {

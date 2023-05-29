@@ -1,75 +1,60 @@
 <div class="overlay" style="padding-top: 1rem;">
   <form style="padding-top: 0;">
     <div class="con">
-
       <header class="head-form">
         <h2>Registrar Cuenta</h2>
         <p>Ingresa los datos solicitados</p>
       </header>
 
       <div class="field-set">
-
         <span class="input-item">
           <i class="fa fa-user-circle"></i>
         </span>
-
-        <input class="form-input" id="correo" type="email" placeholder="@Correo" [value]="correo_usuario"
-          (input)="actualizarCorreo($event)" required />
+        <input class="form-input" id="correo" type="email" placeholder="@Correo" [value]="correo_usuario" (input)="actualizarCorreo($event)" required />
         <br />
 
         <span class="input-item">
           <i class="fa fa-key"></i>
         </span>
-
-        <input class="form-input" type="password" id="contraseña" name="password" placeholder="Contraseña"
-          [value]="contrasena_usuario" (input)="actualizarContrasena($event)" required />
+        <input class="form-input" type="password" id="contraseña" name="password" placeholder="Contraseña" [value]="contrasena_usuario" (input)="actualizarContrasena($event)" required />
         <br />
 
         <span class="input-item">
           <i class="fa fa-key"></i>
         </span>
-
-        <input class="form-input" type="password" id="confirmarContraseña" name="contraseña" placeholder="Confirmar Contraseña"
-          [value]="confirmar_contrasena" (input)="actualizarconfirmarContrasena($event)" required />
+        <input class="form-input" type="password" id="confirmarContraseña" name="contraseña" placeholder="Confirmar Contraseña" [value]="confirmar_contrasena" (input)="actualizarconfirmarContrasena($event)" required />
         <br />
 
         <span class="input-item">
           <i class="fa fa-user-circle"></i>
         </span>
+        <input class="form-input" id="numeroPersonal" type="text" placeholder="NumeroPersonal" [value]="NPersonal_usuario" (input)="actualizarNumeroPersonal($event)" required />
 
-        <input class="form-input" id="numeroPersonal" type="text" placeholder="NumeroPersonal" [value]="NPersonal_usuario"
-          (input)="actualizarNumeroPersonal($event)" required />
+        <input style="margin-top: 1rem;" type="file" (change)="GuardarImagen($event)">
+        <img class="img-preview" *ngIf="imageURL" [src]="imageURL" alt="Imagen Subida">
 
-          <input style="margin-top: 1rem;" type="file" (change)="GuardarImagen($event)">
-          <img class="img-preview" *ngIf="imageURL" [src]="imageURL" alt="Imagen Subida">
-
-        <button class="log-in" (click)="CrearCuenta()">
-          Crear Cuenta
-        </button>
+        <button class="log-in" (click)="CrearCuenta()">Crear Cuenta</button>
       </div>
 
       <div class="other">
-
         <button class="btn submits sign-up" (click)="IniciarSesion()">
           Iniciar Sesión!
           <i class="fa fa-user-plus" aria-hidden="true"></i>
         </button>
-
       </div>
     </div>
   </form>
 
-  <div *ngIf="Mensaje_Contrasena" class="scan-success-message">
+  <div *ngIf="Mensaje_Contrasena" class="MensajeMostrar">
     Las contraseñas no coinciden!!
   </div>
 
-  <div *ngIf="Mostrar_Mensaje" class="scan-success-message">
+  <div *ngIf="Mostrar_Mensaje" class="MensajeMostrar">
     {{Mensaje_Error}}
   </div>
 
-  <div *ngIf="Mostrar_Mensaje_Cuenta" class="scan-success-message">
-    {{Mensaje_Error}}
+  <div *ngIf="Mostrar_Mensaje_Cuenta" class="MensajeMandar" >
+    <p>{{ Mensaje_Error }}</p>
+    <button *ngIf="mostrarBotonAceptar" (click)="ocultarMensajeCuenta()">Aceptar</button>
   </div>
-
-
 </div>
