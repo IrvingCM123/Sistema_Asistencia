@@ -44,6 +44,8 @@ import { EscanerDatosAdapter } from './config/adapters/EscanerDatos/EscanerDatos
 
 import { MensajeriaAdapter } from './config/adapters/Mensajeria/Mensajeria-adapter';
 import { MensajeriaPort } from 'src/app/config/ports/Mensajeria/Mensajeria-ports';
+import { LoginPort } from './config/ports/Login/login-ports';
+import { LoginAdapter } from './config/adapters/Login/login-adapter';
 
 
 @NgModule({
@@ -77,7 +79,8 @@ import { MensajeriaPort } from 'src/app/config/ports/Mensajeria/Mensajeria-ports
     {provide: CuentasPort, useClass: CuentasAdapter},
     {provide: ListaAsistencia_Port, useClass: ListaAsistenciaAdapter},
     {provide: EscanerDatos_Port, useClass: EscanerDatosAdapter},
-    {provide: MensajeriaPort, useClass: MensajeriaAdapter}
+    {provide: MensajeriaPort, useClass: MensajeriaAdapter},
+    {provide: LoginPort, useClass: LoginAdapter}
   ],
   bootstrap: [AppComponent]
 })

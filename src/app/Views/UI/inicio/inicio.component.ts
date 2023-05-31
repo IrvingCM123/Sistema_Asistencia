@@ -10,7 +10,6 @@ import { GetListaAsistenciaUseCase } from 'src/app/domain/ListaAsistencia/usecas
   styleUrls: ['./inicio.component.scss'],
 })
 export class InicioComponent implements OnInit {
-
   public Materias: Array<any> = [];
   public cantidad_alumnos: any[] = [];
 
@@ -34,11 +33,19 @@ export class InicioComponent implements OnInit {
   }
 
   async obtener_cantidadEstudiantes() {
-    let nrc: string[] | any = await this.Materias.map( (materia: any) => materia.nrc_materia );
-    let carrera: string[] | any = await this.Materias.map( (materia: any) => materia.carrera_materia );
+    let nrc: string[] | any = await this.Materias.map(
+      (materia: any) => materia.nrc_materia
+    );
+    let carrera: string[] | any = await this.Materias.map(
+      (materia: any) => materia.carrera_materia
+    );
 
     for (let a = 0; a <= nrc.length - 1; a++) {
-      this.cantidad_alumnos[a] = await this._getCantidadLista.getCantidadListaAsistencia(nrc[a], carrera[a]);
+      this.cantidad_alumnos[a] =
+        await this._getCantidadLista.getCantidadListaAsistencia(
+          nrc[a],
+          carrera[a]
+        );
     }
   }
 

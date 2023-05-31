@@ -9,7 +9,7 @@ import { Mensajeria_Entity } from 'src/app/domain/Mensajeria/models/Mensajeria.e
   providedIn: 'root'
 })
 export class MensajeriaAdapter implements MensajeriaPort {
-  apiUrl = environment.apiMensaje;
+  apiUrl = environment.apiDocente+"/enviar/";
 
   constructor(private http: HttpClient) {}
 

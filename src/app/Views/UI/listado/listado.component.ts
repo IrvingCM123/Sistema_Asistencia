@@ -31,12 +31,14 @@ export class ListadoComponent implements OnInit {
   ) {
     this.carrera = datos.getCarrera();
     this.nrcMateria = datos.getNrc();
+    console.log(this.nrcMateria)
 
     let fecha = new Date();
     let dia = fecha.getDate();
     let mes = fecha.getMonth() + 1;
     let año = fecha.getFullYear();
     this.fechaCompleta = año + ':' + mes + ':' + dia;
+    console.log(this.fechaCompleta)
   }
 
   async ngOnInit() {

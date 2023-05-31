@@ -50,11 +50,11 @@
   </div>
 
   <div *ngIf="Mostrar_Mensaje" class="MensajeMostrar">
-    {{Mensaje_Error}}
+    {{Mensaje_Cuenta}}
   </div>
 
   <div *ngIf="Mostrar_Mensaje_Cuenta" class="MensajeMandar" >
-    <p>{{ Mensaje_Error }}</p>
+    <p>{{ Mensaje_Cuenta }}</p>
     <button *ngIf="mostrarBotonAceptar" (click)="ocultarMensajeCuenta()">Aceptar</button>
   </div>
 </div>

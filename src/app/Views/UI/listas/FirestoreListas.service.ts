@@ -23,7 +23,7 @@ export class FirestoreService {
   }
   guardar_DatoLocal(indice: string, valor: any): void {
     localStorage.setItem(indice, valor);
-    console.log(valor, indice);
+    console.log(valor);
   }
 
   eliminar_DatoLocal(indice: string): void {
@@ -41,5 +41,5 @@ export class FirestoreService {
   Actualizar_Formulario(formulario: string | any) {
     this.formularioSubject.next(formulario);
   }
-  
+
 }

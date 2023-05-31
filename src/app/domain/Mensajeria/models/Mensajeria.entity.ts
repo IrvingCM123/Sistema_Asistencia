@@ -1,3 +1,4 @@
 export class Mensajeria_Entity {
-  Mensaje!: string;
+  correo !: any;
+  contraseña !: any;
 }

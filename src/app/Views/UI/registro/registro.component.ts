@@ -26,7 +26,7 @@ export class RegistroComponent implements OnInit {
 
   imageURL: string | any;
   Cuenta: string[] | any;
-  Mensaje_Error: any;
+  Mensaje_Cuenta: any;
 
   constructor(
     private datosLocales: FirestoreService,
@@ -37,40 +37,41 @@ export class RegistroComponent implements OnInit {
 
   async CrearCuenta() {
     this.compararContraseña(this.contrasena_usuario, this.confirmar_contrasena);
+    await this.SubirImagenFirestore();
 
     this.Cuenta = [
-      'Irving2133124',
+      this.imageURL,
       this.NPersonal_usuario,
       this.correo_usuario,
       this.contrasena_usuario,
     ];
 
-    if (this.comparar == true) {
+    console.log(this.Cuenta)
+    /*if (this.comparar == true) {
       this._cuentaCrear.postCuentas(this.Cuenta).subscribe(
         (response) => {
-          console.log(response);
+          this.Mensaje_Cuenta = "La cuenta ha sido creada con éxito";
+          this.Mostrar_Mensaje_Cuenta = true;
+          this.mostrarBotonAceptar = true;
         },
         (error) => {
-          this.Mensaje_Error = error.error;
-          console.log(this.Mensaje_Error)
+          this.Mensaje_Cuenta = error.error;
           this.Mostrar_Mensaje_Cuenta = true;
           this.mostrarBotonAceptar = true;
         }
       );
-      await this.SubirImagenFirestore();
     } else {
       this.Mensaje_Contrasena = true;
       setTimeout(() => {
         this.Mensaje_Contrasena = false;
       }, 4000);
-    }
+    }*/
   }
 
   ocultarMensajeCuenta(): void {
     this.Mostrar_Mensaje_Cuenta = false;
     this.mostrarBotonAceptar = false;
   }
-
 
   async SubirImagenFirestore() {
     if (this.file) {
