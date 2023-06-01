@@ -32,13 +32,14 @@ export class LoginComponent implements OnInit {
 
     try {
       const Resp:any = await response$;
-      this.datosLocales.guardar_DatoLocal('Resp', Resp.token); // Guardar el valor "token"
-      this.responseSuccessful = true; // Actualizar a true si la petición se completó correctamente
+      this.datosLocales.guardar_DatoLocal('Resp', Resp.token);
+      this.responseSuccessful = true;
+      console.log(this.datosLocales.obtener_DatoLocal('Resp'))
     } catch (error) {
-      this.responseSuccessful = false; // Actualizar a false si hay un error en la petición
+      this.responseSuccessful = false;
     }
 
-    return this.responseSuccessful; // Devolver el valor de la variable de respuesta exitosa
+    return this.responseSuccessful;
   }
 
   async IniciarSesion() {

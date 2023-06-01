@@ -14,7 +14,7 @@ export class RegistroComponent implements OnInit {
   correo_usuario: string = '';
   contrasena_usuario: string = '';
   confirmar_contrasena: string = '';
-  NPersonal_usuario: string = '';
+  NPersonal_usuario: number = 0;
 
   file: File | any = null;
   comparar: boolean = false;
@@ -40,14 +40,14 @@ export class RegistroComponent implements OnInit {
     await this.SubirImagenFirestore();
 
     this.Cuenta = [
-      this.imageURL,
       this.NPersonal_usuario,
-      this.correo_usuario,
       this.contrasena_usuario,
+      this.correo_usuario,
+      this.imageURL,
     ];
 
-    console.log(this.Cuenta)
-    /*if (this.comparar == true) {
+    if (this.comparar == true) {
+      console.log(this.Cuenta)
       this._cuentaCrear.postCuentas(this.Cuenta).subscribe(
         (response) => {
           this.Mensaje_Cuenta = "La cuenta ha sido creada con éxito";
@@ -65,7 +65,7 @@ export class RegistroComponent implements OnInit {
       setTimeout(() => {
         this.Mensaje_Contrasena = false;
       }, 4000);
-    }*/
+    }
   }
 
   ocultarMensajeCuenta(): void {
@@ -104,7 +104,7 @@ export class RegistroComponent implements OnInit {
   }
 
   actualizarNumeroPersonal(event: Event): void {
-    this.NPersonal_usuario = (event.target as HTMLInputElement).value;
+    this.NPersonal_usuario = +(event.target as HTMLInputElement).value;
   }
 
   compararContraseña(contra1: string, contra2: string) {
