@@ -1,3 +1,3 @@
-export class Formularios_Entity {
+export class Cuentas_Entity {
   Contenido : any;
 }

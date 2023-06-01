@@ -6,10 +6,9 @@
     <article id="Informacion_Docente">
       <app-docente></app-docente>
     </article>
-    <article id="Pantalla_Informacion" >
+    <article id="Pantalla_Informacion">
       <router-outlet></router-outlet>
     </article>
-
   </Main>
 
   <div *ngIf="!loggedIn" id="ContenedorLogin">
@@ -17,7 +16,7 @@
       <app-registro (iniciarSesion)="mostrarIniciarSesion()"></app-registro>
     </section>
 
-    <section id="Registro" *ngIf="formulario === 'login'">
+    <section id="Login" *ngIf="formulario === 'login'">
       <app-login (registrarse)="mostrarRegistro()"></app-login>
     </section>
   </div>

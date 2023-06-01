@@ -1,18 +1,18 @@
-import { Formularios_Entity } from '../models/Formulario.entity';
+import { Cuentas_Entity } from '../models/Formulario.entity';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FormularioPort } from 'src/app/config/ports/Formularios/formulario-ports';
+import { CuentasPort } from 'src/app/config/ports/Formularios/formulario-ports';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class GetFormularioUseCase {
+export class PostCuentasUseCase {
 
-  constructor(private formularioGateway: FormularioPort) {}
+  constructor(private cuentasGateway: CuentasPort) {}
 
-  postFormulario(Contenido : any): Observable<Formularios_Entity> {
-    return this.formularioGateway.postFormulario(Contenido);
+  postCuentas(Contenido : any ): Observable<Cuentas_Entity> {
+    return this.cuentasGateway.postCuentas(Contenido);
   }
 
 }

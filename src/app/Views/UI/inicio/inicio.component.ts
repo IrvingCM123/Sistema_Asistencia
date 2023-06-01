@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { GetMateriaUseCase } from 'src/app/domain/Materia/usecase/client/getMateria';
 import { DatosService } from './Datos.Service';
 import { FirestoreService } from '../listas/FirestoreListas.service';
+import { GetListaAsistenciaUseCase } from 'src/app/domain/ListaAsistencia/usecase/getLista';
 
 @Component({
   selector: 'app-inicio',
@@ -9,12 +10,12 @@ import { FirestoreService } from '../listas/FirestoreListas.service';
   styleUrls: ['./inicio.component.scss'],
 })
 export class InicioComponent implements OnInit {
-
   public Materias: Array<any> = [];
   public cantidad_alumnos: any[] = [];
 
   constructor(
     private _getMateriasCasosUso: GetMateriaUseCase,
+    private _getCantidadLista: GetListaAsistenciaUseCase,
     private obtenerDato: DatosService,
     private datos_Locales: FirestoreService
   ) {}
@@ -32,11 +33,19 @@ export class InicioComponent implements OnInit {
   }
 
   async obtener_cantidadEstudiantes() {
-    let nrc: string[] | any = await this.Materias.map( (materia: any) => materia.nrc_materia );
-    let carrera: string[] | any = await this.Materias.map( (materia: any) => materia.carrera_materia );
+    let nrc: string[] | any = await this.Materias.map(
+      (materia: any) => materia.nrc_materia
+    );
+    let carrera: string[] | any = await this.Materias.map(
+      (materia: any) => materia.carrera_materia
+    );
 
     for (let a = 0; a <= nrc.length - 1; a++) {
-      this.cantidad_alumnos[a] = await this.datos_Locales.getCantidadEstudiantes(nrc[a], carrera[a]);
+      this.cantidad_alumnos[a] =
+        await this._getCantidadLista.getCantidadListaAsistencia(
+          nrc[a],
+          carrera[a]
+        );
     }
   }
 

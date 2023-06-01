@@ -1,58 +1,65 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-**********************" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  integrity="sha512-**********************" crossorigin="anonymous" />
 
-<div class="contact-form-container" style="border-radius: 1rem;">
-  <div class="contact-us" style="border-top-left-radius: 1rem;">
+<div class="contact-form-container" style="border-radius: 1rem">
+  <div class="contact-us" style="border-top-left-radius: 1rem">
+
     <div class="contact-header">
       <h1>&#9135;&#9135;&#9135;&#9135; CONTACT US</h1>
     </div>
+
     <div class="social-bar">
       <ul>
-        <li> <a href="https://www.facebook.com/" target="_blank"> <i class="fab fa-facebook-f"></i> </a> </li>
-        <li> <a href=""> <i class="fab fa-twitter"></i> </a> </li>
-        <li> <a href=""> <i class="fab fa-instagram"></i> </a> </li>
-        <li> <a href=""> <i class="fab fa-dribbble"></i> </a> </li>
+        <li>
+          <a href="https://www.facebook.com/" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+        </li>
+        <li>
+          <a href=""> <i class="fab fa-twitter"></i> </a>
+        </li>
+        <li>
+          <a href=""> <i class="fab fa-instagram"></i> </a>
+        </li>
+        <li>
+          <a href=""> <i class="fab fa-dribbble"></i> </a>
+        </li>
       </ul>
     </div>
+
   </div>
+
   <div class="header">
     <h1>Solicitar alta de materia!</h1>
     <h2>Contactanos</h2>
   </div>
+
   <div class="address">
     <i class="fas fa-map-marker-alt"></i>
     <h3>602 ISW</h3>
     <h3>USBI</h3>
   </div>
+
   <div class="phone">
     <i class="fas fa-phone-alt"></i>
     <h3>272-259-4250</h3>
   </div>
+
   <div class="email">
     <i class="fas fa-envelope"></i>
     <h3>zS20006735@estudiantes.uv.mx</h3>
   </div>
-  <div class="contact-form">
-    <form #operacionForm="ngForm" (ngSubmit)="submitOperacion()" (submit)="onSubmit($event)">
-      <label for="numero"> Número de personal </label>
-      <input
-            type="text"
-            id="numero"
-            name="numero"
-            maxlength="11"
-            [(ngModel)]="operacion.numero"
-            required
 
-          />
-        <label for="NRC"> NRC de materia</label>
-      <input
-            type="text"
-            id="NRC"
-            name="NRC"
-            maxlength="6"
-            [(ngModel)]="operacion.nrc"
-            required
-          />
-      <button type="submit" [disabled]="!operacionForm.valid">Enviar</button>
+  <div class="contact-form">
+
+    <form #operacionForm="ngForm" (ngSubmit)="MandarMensaje()" (submit)="onSubmit($event)">
+      <label for="numero"> Número de personal </label>
+      <input type="text" id="numero" name="numero" maxlength="11" [(ngModel)]="mensajeContenido.numero" required />
+      <label for="NRC"> NRC de materia</label>
+      <input type="text" id="NRC" name="NRC" maxlength="6" [(ngModel)]="mensajeContenido.nrc" required />
+      <button type="submit" >Enviar</button>
     </form>
+
   </div>
+
 </div>
