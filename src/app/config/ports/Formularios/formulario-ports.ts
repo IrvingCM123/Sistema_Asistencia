@@ -1,6 +1,6 @@
-import { Formularios_Entity } from "src/app/domain/Formularios/models/Formulario.entity";
+import { Cuentas_Entity } from "src/app/domain/Formularios/models/Formulario.entity";
 import { Observable } from "rxjs";
 
-export abstract class FormularioPort {
-  abstract postFormulario(Contenido : any): Observable<Formularios_Entity>;
+export abstract class CuentasPort {
+  abstract postCuentas(Contenido : any): Observable<Cuentas_Entity>;
 }

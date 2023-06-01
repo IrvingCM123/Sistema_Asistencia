@@ -23,7 +23,7 @@ export class FirestoreService {
   }
   guardar_DatoLocal(indice: string, valor: any): void {
     localStorage.setItem(indice, valor);
-    console.log(valor, indice);
+    console.log(valor);
   }
 
   eliminar_DatoLocal(indice: string): void {
@@ -42,47 +42,4 @@ export class FirestoreService {
     this.formularioSubject.next(formulario);
   }
 
-  async getListaAsistencia(nrc: string, carrera: string) {
-    try {
-      let url = '/' + carrera + '/Materias/' + nrc;
-      const lista_encontrada = await this.firestore.collection(url).get().toPromise();
-      console.log("Lista Asistencia", lista_encontrada);
-      if (lista_encontrada) {
-        const datos_lista = await lista_encontrada.docs.map((alumnos) => alumnos.data());
-        console.log("Dato", datos_lista);
-        return datos_lista;
-      } else {
-        console.log('No se pudo obtener la información de Firestore.');
-        return [];
-      }
-    } catch (error) {
-      console.error('Error al obtener la información de Firestore:', error);
-      return [];
-    }
-  }
-  async getCantidadEstudiantes(nrc: string, carrera: string) {
-    let url = '/' + carrera + '/Materias/' + nrc;
-    const lista_encontrada = await this.firestore.collection(url).get().toPromise();
-    if (lista_encontrada) {
-      const datos_lista = lista_encontrada.docs.map((alumnos) => alumnos.data());
-      let contador = datos_lista.length;
-      return contador;
-    } else {
-      console.log('No se pudo obtener la información de Firestore.');
-      return [];
-    }
-  }
-  async getDatosLeidos(nrc: string, dia:any) {
-    let url = '/Registro/Asistencia/' + nrc + '/' + dia + '/Alumnos'
-    console.log(dia)
-    const obtener_datos = await this.firestore.collection(url).get().toPromise();
-    if (obtener_datos) {
-      const datos_leidos = obtener_datos.docs.map((datos) => datos.data());
-      console.log(datos_leidos)
-      return datos_leidos;
-    } else {
-      console.log('No se pudo obtener la información de Firestore.');
-      return [];
-    }
-  }
 }

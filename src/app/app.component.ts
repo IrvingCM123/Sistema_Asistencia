@@ -9,7 +9,7 @@ import { FirestoreService } from './Views/UI/listas/FirestoreListas.service';
 })
 export class AppComponent {
   loggedIn: boolean = false;
-  formulario: string = ''; 
+  formulario: string = '';
 
   constructor(private router: Router, private datosLocales: FirestoreService) {
 
@@ -42,7 +42,7 @@ export class AppComponent {
     this.formulario = 'registro';
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const path = event.urlAfterRedirects.split('/')[1];
@@ -54,12 +54,12 @@ export class AppComponent {
       }
     });
 
-    const cachedLoggedIn = this.datosLocales.obtener_DatoLocal('login');
+    const cachedLoggedIn = await this.datosLocales.obtener_DatoLocal('login');
     if (cachedLoggedIn) {
       this.loggedIn = cachedLoggedIn;
     }
 
-    const cachedFormulario = this.datosLocales.obtener_DatoLocal('formulario');
+    const cachedFormulario = await this.datosLocales.obtener_DatoLocal('formulario');
     if (cachedFormulario) {
       this.formulario = cachedFormulario;
     }

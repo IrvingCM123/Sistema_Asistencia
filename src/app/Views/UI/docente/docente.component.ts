@@ -21,13 +21,16 @@ export class DocenteComponent implements OnInit {
 
   N_Personal: string | any;
   datos: any;
+  public token: string = "";
 
   async ngOnInit() {
-    this.Docente_ID = this.datos_Locales.obtener_DatoLocal("docenteId");
 
-    this.response$ = await this._getDocentesCasosUso.getDocenteByID(this.Docente_ID);
+    this.token = this.datos_Locales.obtener_DatoLocal('Resp');
+    console.log(this.token)
+    this.response$ = await this._getDocentesCasosUso.getDocenteByID(this.token);
     this.response$.subscribe((data: any) => {
       this.datos = data;
+      console.log(this.datos);
       this.N_Personal = data.numero_personal;
       this.datosService.setNPersonal(this.N_Personal);
     });
