@@ -9,11 +9,15 @@ import { Docentes } from 'src/app/domain/Docentes/models/Docentes.entity';
   providedIn: 'root'
 })
 export class DocenteAdapter implements DocentesPort {
-  api = environment.apiUrl+'/Docentes/';
+  api = environment.apiDocente + 'ObtenerDocente';
   constructor(private http: HttpClient) {}
 
-  getDocenteByID(id: String): Observable<Docentes> {
-    let header = new HttpHeaders().set('Type-content', 'aplication/json');
-    return this.http.get<Docentes>(this.api+id, { headers: header });
+  getDocenteByID(Token: string): Observable<Docentes> {
+    let header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': Token
+  });
+
+    return this.http.get<Docentes>(this.api, { headers: header });
   }
 }

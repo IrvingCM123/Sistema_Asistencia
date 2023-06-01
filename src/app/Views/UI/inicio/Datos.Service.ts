@@ -16,7 +16,6 @@ export class DatosService {
   }
 
   getNrc() {
-    console.log('get', this.datos_locales.obtener_DatoLocal('NRC'))
     return this.datos_locales.obtener_DatoLocal('NRC');
   }
 

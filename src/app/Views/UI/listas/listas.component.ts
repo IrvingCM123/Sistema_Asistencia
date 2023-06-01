@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DatosService } from '../inicio/Datos.Service';
 import { FirestoreService } from './FirestoreListas.service';
 import { DatosServicel } from './DatosServiceL.Service';
+import { GetListaAsistenciaUseCase } from 'src/app/domain/ListaAsistencia/usecase/getLista';
 
 interface Dato {
   id?: string;
@@ -16,12 +17,13 @@ interface Dato {
   styleUrls: ['./listas.component.scss'],
 })
 export class Listas implements OnInit {
-  listaAsistencia: any[] = [];
+  listaAsistencia: any[] | any= [];
   nrcMateria: any;
   carrera: any;
 
+
   constructor(
-    private firestoreService: FirestoreService,
+    private _getListaAsistenciaCasosUso: GetListaAsistenciaUseCase,
     private datos: DatosService,
   ) {
     this.carrera = datos.getCarrera();
@@ -29,10 +31,6 @@ export class Listas implements OnInit {
   }
 
   async ngOnInit() {
-    console.log(this.nrcMateria, this.carrera)
-    this.listaAsistencia = await this.firestoreService.getListaAsistencia(
-      this.nrcMateria,
-      this.carrera
-    );
+    this.listaAsistencia = await this._getListaAsistenciaCasosUso.getListaAsistenciaByNrcCarrera(this.nrcMateria, this.carrera);
   }
 }

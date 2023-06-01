@@ -1,8 +1,6 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { OperacionService } from './operacion.service';
-import { Router } from '@angular/router';
+import { GetMensajeriaUseCase } from 'src/app/domain/Mensajeria/usecase/postMensajeria';
 
 @Component({
   selector: 'app-operacion-materia',
@@ -10,18 +8,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./operacion-materia.component.scss'],
 })
 export class OperacionMateriaComponent {
-  operacion = {
+  mensajeContenido = {
     numero: ' ',
     nrc: ' ',
   };
 
   constructor(
-    private http: HttpClient,
-    private operacionService: OperacionService,
-    private router: Router
+    private _mensajeriaUseCase: GetMensajeriaUseCase,
+    private location: Location,
   ) {}
-  submitOperacion() {
-    this.operacionService.enviarOperacionPorCorreo(this.operacion).subscribe(
+
+  MandarMensaje() {
+    this._mensajeriaUseCase.postMensajeria(this.mensajeContenido).subscribe(
       (res) => console.log(res),
       (err) => console.log(err)
     );
@@ -29,8 +27,6 @@ export class OperacionMateriaComponent {
 
   public onSubmit(event: Event) {
     event.preventDefault();
-    this.router.navigateByUrl('/Sistema', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/']);
-    });
+    this.location.go;
   }
 }
