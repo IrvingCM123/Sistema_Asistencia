@@ -17,7 +17,7 @@ export class MenuComponent implements OnInit {
 
   CerrarSesion() {
     this.datos_Locales.Actualizar_Login(false);
-    this.datos_Locales.eliminar_DatoLocal('docenteId');
+    this.datos_Locales.eliminar_DatoLocal('Resp');
     this.datos_Locales.Actualizar_Formulario(false);
     this.location.go('/Sistema/Registro');
   }

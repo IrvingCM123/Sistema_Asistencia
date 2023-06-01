@@ -11,13 +11,13 @@
             </div>
 
             <div class="actions">
-              <div class="btn hvr-underline-from-center name"> {{datos.nombre}} </div>
+              <div class="btn hvr-underline-from-center name"> {{datos.nombres + " " }} {{datos.apellidos}} </div>
               <div class="btn hvr-underline-from-center info">Catedratico de la Universidad Veracruzana</div>
             </div>
 
             <div class="actions">
               <div *ngIf="!datos?.title" class="btn hvr-underline-from-center info">Numero de personal: <span class="Info_Span"> {{datos.numero_personal}} </span></div>
-              <div *ngIf="!datos?.title" class="btn hvr-underline-from-center info">Facultad Asignada: <span class="Info_Span"> {{datos.facultad_asignada}} </span></div>
+              <div *ngIf="!datos?.title" class="btn hvr-underline-from-center info">Facultad Asignada: <span class="Info_Span"> {{datos.facultad}} </span></div>
 
             </div>
           </div>
