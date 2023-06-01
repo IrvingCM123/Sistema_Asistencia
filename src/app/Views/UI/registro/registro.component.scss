@@ -162,3 +162,52 @@ button:hover {
     transform: translateY(5px);
   }
 }
+
+.MensajeMostrar {
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff3300;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  animation: fadeOut 2s ease-in-out forwards;
+}
+
+.MensajeMandar {
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff3300;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+
+.overlay {
+  padding-top: 1rem;
+}
+
+form {
+  padding-top: 0;
+}
+
+.form-group {
+  position: relative;
+}
+
+.img-preview {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  margin-top: 1rem;
+}
+
