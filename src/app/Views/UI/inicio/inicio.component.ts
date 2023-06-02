@@ -3,7 +3,6 @@ import { GetMateriaUseCase } from 'src/app/domain/Materia/usecase/client/getMate
 import { DatosService } from './Datos.Service';
 import { FirestoreService } from '../listas/FirestoreListas.service';
 import { GetListaAsistenciaUseCase } from 'src/app/domain/ListaAsistencia/usecase/getLista';
-import { DatosServicel } from '../listas/DatosServiceL.Service';
 import { PostTokenUseCase } from 'src/app/domain/Tokens/usecase/postTokens';
 
 @Component({
@@ -35,10 +34,8 @@ export class InicioComponent implements OnInit {
   async ngOnInit() {
     this.Token = this.datosLocales.obtener_DatoLocal('Resp');
     await this.obtener_nrcMaterias(this.Token);
-    console.log(this.nrc$);
-    await this.generarToken(this.nrc$);
+    await this.generarToken(this.nrc$.nrcs);
     await this.obtener_Materias(this.TokenNrc.token);
-    console.log(this.materias$)
   }
 
   async generarToken(valor: string | any) {
@@ -95,6 +92,7 @@ export class InicioComponent implements OnInit {
         }
       );
     });
+    this.Materias = this.materias$;
   }
 
   enviarDato(nrc: any, carrera: any) {

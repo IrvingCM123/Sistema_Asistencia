@@ -27,8 +27,6 @@ export class MateriasAdapter implements MateriasPort {
       Authorization: NRC,
     });
 
-    console.log(NRC)
-
     return this.http.get<Array<Materias>>(this.api + 'Materias', { headers: header });
   }
 }
