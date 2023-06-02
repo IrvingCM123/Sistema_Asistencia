@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GetAlumnoUseCase } from 'src/app/domain/Alumnos/usecase/client/getAlumno';
 import { FirestoreService } from '../listas/FirestoreListas.service';
-import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
@@ -18,11 +16,9 @@ export class MenuComponent implements OnInit {
   CerrarSesion() {
     this.datos_Locales.Actualizar_Login(false);
     this.datos_Locales.eliminar_DatoLocal('Resp');
+    this.datos_Locales.eliminar_DatoLocal('login');
     this.datos_Locales.Actualizar_Formulario(false);
     this.location.go('/Sistema/Registro');
-  }
-  Hola(): void {
-    console.log('Hola');
   }
 
   ngOnInit(): void {}

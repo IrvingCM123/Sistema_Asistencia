@@ -23,15 +23,6 @@ export class AppComponent {
         }
       }
     });
-
-    const docenteId = this.datosLocales.obtener_DatoLocal('docenteId');
-    if (docenteId) {
-      this.router.navigate(['Sistema/Inicio']);
-      this.loggedIn = true;
-    } else {
-      this.router.navigate(['Sistema/Registro']);
-      this.loggedIn = false;
-    }
   }
 
   mostrarIniciarSesion(): void {

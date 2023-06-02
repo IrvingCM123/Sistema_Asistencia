@@ -3,6 +3,8 @@ import { GetMateriaUseCase } from 'src/app/domain/Materia/usecase/client/getMate
 import { DatosService } from './Datos.Service';
 import { FirestoreService } from '../listas/FirestoreListas.service';
 import { GetListaAsistenciaUseCase } from 'src/app/domain/ListaAsistencia/usecase/getLista';
+import { DatosServicel } from '../listas/DatosServiceL.Service';
+import { PostTokenUseCase } from 'src/app/domain/Tokens/usecase/postTokens';
 
 @Component({
   selector: 'app-inicio',
@@ -15,20 +17,40 @@ export class InicioComponent implements OnInit {
 
   constructor(
     private _getMateriasCasosUso: GetMateriaUseCase,
+    private _generarToken: PostTokenUseCase,
     private _getCantidadLista: GetListaAsistenciaUseCase,
     private obtenerDato: DatosService,
-    private datos_Locales: FirestoreService
+    private datosLocales: FirestoreService
   ) {}
-  response$: any;
+
+  nrc$: any;
+
+  materias$: any;
+  Token: string | any;
+  TokenNrc: string | any;
+
   datos: any;
   dato: number = 0;
 
   async ngOnInit() {
-    this.response$ = this._getMateriasCasosUso.getMateriasAll();
+    this.Token = this.datosLocales.obtener_DatoLocal('Resp');
+    await this.obtener_nrcMaterias(this.Token);
+    console.log(this.nrc$);
+    await this.generarToken(this.nrc$);
+    await this.obtener_Materias(this.TokenNrc.token);
+    console.log(this.materias$)
+  }
 
-    this.response$.subscribe(async (Resp: any) => {
-      this.Materias = Resp;
-      this.obtener_cantidadEstudiantes();
+  async generarToken(valor: string | any) {
+    this.TokenNrc = await new Promise((resolve, reject) => {
+      this._generarToken.postTokens(valor).subscribe(
+        (Resp: any) => {
+          resolve(Resp);
+        },
+        (error: any) => {
+          reject(error);
+        }
+      );
     });
   }
 
@@ -47,6 +69,32 @@ export class InicioComponent implements OnInit {
           carrera[a]
         );
     }
+  }
+
+  async obtener_nrcMaterias(Token: string) {
+    this.nrc$ = await new Promise((resolve, reject) => {
+      this._getMateriasCasosUso.getNRCMaterias(Token).subscribe(
+        (Resp: any) => {
+          resolve(Resp);
+        },
+        (error: any) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  async obtener_Materias(materia: any) {
+    this.materias$ = await new Promise((resolve, reject) => {
+      this._getMateriasCasosUso.getMateriasAll(materia).subscribe(
+        (Resp: any) => {
+          resolve(Resp);
+        },
+        (error: any) => {
+          reject(error);
+        }
+      );
+    });
   }
 
   enviarDato(nrc: any, carrera: any) {
