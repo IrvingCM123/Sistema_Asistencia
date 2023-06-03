@@ -1,11 +1,11 @@
-<form (submit)="uploadFile($event)" *ngIf="!listaAsistencia  || listaAsistencia.length == 0">
-  <input type="file" (change)="onFileChange($event)" accept=".xlsx, .xls">
-  <button type="submit">Cargar archivo</button>
+<form *ngIf="!listaAsistencia  || listaAsistencia.length == 0">
+  <input type="file" (change)="Archivo($event)" accept=".xlsx, .xls">
+  <button >Cargar archivo</button>
 </form>
 
-<div *ngIf="filePreview">
+<div *ngIf="vistaPreviaArchivo">
   <h2>Previsualización del archivo:</h2>
-  <p>{{ filePreview.name }}</p>
+  <p>{{ vistaPreviaArchivo.name }}</p>
 
   <div *ngIf="jsonData && jsonData.length > 0">
     <table class="excel-table">
@@ -49,4 +49,4 @@
   </tbody>
 </table>
 
-<p *ngIf="uploadSuccess">Archivo cargado exitosamente.</p>
+<p *ngIf="mensajeSubir">Archivo cargado exitosamente.</p>

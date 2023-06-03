@@ -3,7 +3,8 @@ import { DatosService } from '../inicio/Datos.Service';
 import { HttpClient } from '@angular/common/http';
 import { GetListaAsistenciaUseCase } from 'src/app/domain/ListaAsistencia/usecase/getLista';
 import * as XLSX from 'xlsx';
-import { saveAs } from 'file-saver';
+import firebase from 'firebase/compat/app';
+import 'firebase/firestore';
 
 @Component({
   selector: 'app-listas',
@@ -11,14 +12,14 @@ import { saveAs } from 'file-saver';
   styleUrls: ['./listas.component.scss'],
 })
 export class Listas implements OnInit {
-  listaAsistencia: any[] | any= [];
+  listaAsistencia: any[] | any = [];
   nrcMateria: any;
   carrera: any;
   jsonData: any;
 
-  fileToUpload: File | any;
-  filePreview: boolean | any;
-  uploadSuccess: boolean | any;
+  archivoRecibido: File | any;
+  vistaPreviaArchivo: boolean | any;
+  mensajeSubir: boolean | any;
 
   constructor(
     private _getListaAsistenciaCasosUso: GetListaAsistenciaUseCase,
@@ -30,55 +31,86 @@ export class Listas implements OnInit {
   }
 
   async ngOnInit() {
-    this.listaAsistencia = await this._getListaAsistenciaCasosUso.getListaAsistenciaByNrcCarrera(this.nrcMateria, this.carrera);
-  }
-
-  onFileChange(event: any) {
-    const file = event.target.files[0];
-    this.readFile(file);
-  }
-  readFile(file: File) {
-    const reader: any = new FileReader();
-    reader.onload = (e: any) => {
-      const data: any = new Uint8Array(e.target.result);
-      const workbook: any = XLSX.read(data, { type: 'array' });
-      const worksheet: any = workbook.Sheets[workbook.SheetNames[0]];
-
-      const rangeD: any = XLSX.utils.sheet_to_json(worksheet, { range: 'D11:D36', header: 1 });
-      const rangeH: any = XLSX.utils.sheet_to_json(worksheet, { range: 'H11:H36', header: 1 });
-      const rangeO: any = XLSX.utils.sheet_to_json(worksheet, { range: 'O11:O36', header: 1 });
-      const rangeP: any = XLSX.utils.sheet_to_json(worksheet, { range: 'P11:P36', header: 1 });
-
-      const combinedData: any[] = [];
-      for (let i = 0; i < rangeD.length; i++) {
-        const row: any[] = [rangeD[i][0], rangeH[i][0], rangeO[i][0], rangeP[i][0]];
-        combinedData.push(row);
-      }
-
-      this.jsonData = combinedData;
-      this.filePreview = true;
-      console.log(this.jsonData);
-    };
-    reader.readAsArrayBuffer(file);
-  }
-
-
-  uploadFile(event: any) {
-    event.preventDefault();
-
-    if (this.fileToUpload) {
-      const formData = new FormData();
-      formData.append('file', this.fileToUpload);
-
-      this.http.post<any>('URL_DE_TU_API', formData).subscribe(
-        response => {
-          this.listaAsistencia = response;
-          this.uploadSuccess = true;
-        },
-        error => {
-          console.error('Error al cargar el archivo:', error);
-        }
+    this.listaAsistencia =
+      await this._getListaAsistenciaCasosUso.getListaAsistenciaByNrcCarrera(
+        this.nrcMateria,
+        this.carrera
       );
+  }
+
+  Archivo(event: any) {
+    const file = event.target.files[0];
+    this.RecibirArchivo(file);
+  }
+
+  RecibirArchivo(file: File) {
+    const archivo: any = new FileReader();
+    archivo.onload = (e: any) => {
+      const leer_Archivo: any = new Uint8Array(e.target.result);
+      const acceder_Datos: any = XLSX.read(leer_Archivo, { type: 'array' });
+      const acceder_HojaArchivo: any =
+        acceder_Datos.Sheets[acceder_Datos.SheetNames[0]];
+
+      console.log(acceder_HojaArchivo);
+
+      const Matricula: any = XLSX.utils.sheet_to_json(acceder_HojaArchivo, {
+        range: 'D11:D36',
+        header: 1,
+      });
+      const Nombre: any = XLSX.utils.sheet_to_json(acceder_HojaArchivo, {
+        range: 'H11:H36',
+        header: 1,
+      });
+      const Status: any = XLSX.utils.sheet_to_json(acceder_HojaArchivo, {
+        range: 'O11:O36',
+        header: 1,
+      });
+      const Carrera: any = XLSX.utils.sheet_to_json(acceder_HojaArchivo, {
+        range: 'P11:P36',
+        header: 1,
+      });
+
+      const Guardar_Datos: any[] = [];
+      for (let i = 2; i < Matricula.length; i++) {
+        const datos_lista: any[] = [
+          Matricula[i][0],
+          Nombre[i][0],
+          Status[i][0],
+          Carrera[i][0],
+        ];
+        Guardar_Datos.push(datos_lista);
+      }
+      this.GuardarDatosEnFirestore(Guardar_Datos);
+
+      this.jsonData = Guardar_Datos;
+      this.vistaPreviaArchivo = true;
+    };
+    archivo.readAsArrayBuffer(file);
+  }
+
+  GuardarDatosEnFirestore(datos: any[]) {
+    const db = firebase.firestore();
+    const coleccion = db.collection(`ISW/Materias/`+ this.nrcMateria);
+
+    for (let i = 2; i < datos.length; i++) {
+      const datos_lista: any = {
+        Matricula: datos[i][0],
+        Nombre: datos[i][1],
+        Status: datos[i][2],
+        Carrera: datos[i][3],
+      };
+
+      const docRef = coleccion.doc(datos_lista.Matricula);
+      docRef
+        .set(datos_lista)
+        .then(() => {
+          console.log('Datos guardados correctamente');
+        })
+        .catch((error) => {
+          console.error('Error al guardar los datos:', error);
+        });
     }
   }
+
+ 
 }
