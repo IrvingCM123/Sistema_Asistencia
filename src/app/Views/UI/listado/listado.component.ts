@@ -1,7 +1,5 @@
 import { GetEscanerDatosUseCase } from './../../../domain/EscanerDatos/usecase/getEscanerDatos';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FirestoreService } from '../servicios/FirestoreListas.service';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DatosService } from '../inicio/Datos.Service';
 
 export interface Estructura {
@@ -25,24 +23,25 @@ export class ListadoComponent implements OnInit {
   fechaCompleta: string;
 
   constructor(
-    private firestoreService: FirestoreService,
     private _getDatos: GetEscanerDatosUseCase,
     private datos: DatosService
   ) {
     this.carrera = datos.getCarrera();
     this.nrcMateria = datos.getNrc();
-    console.log(this.nrcMateria)
 
     let fecha = new Date();
     let dia = fecha.getDate();
     let mes = fecha.getMonth() + 1;
     let año = fecha.getFullYear();
     this.fechaCompleta = año + ':' + mes + ':' + dia;
-    console.log(this.fechaCompleta)
   }
 
   async ngOnInit() {
-    this.listaAsistencia = await this._getDatos.getEscanerDatos(this.nrcMateria, this.fechaCompleta);
-  }
+    (await this._getDatos.getEscanerDatos(this.nrcMateria, this.fechaCompleta)).subscribe((datos) => {
+      this.listaAsistencia = datos;
+    }, (error) => {
+      console.error('Error al obtener los datos:', error);
+    });
 
+  }
 }

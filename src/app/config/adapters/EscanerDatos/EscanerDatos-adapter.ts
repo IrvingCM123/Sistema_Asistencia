@@ -14,18 +14,25 @@ export class EscanerDatosAdapter implements EscanerDatos_Port {
   ) { }
 
   async getEscanerDatos(nrc: string, diaLista: string): Promise<Observable<EscanerDatos_Entity>> {
-    let url = '/Registro/Asistencia/' + nrc + '/' + diaLista + '/Alumnos'
+    let url = '/Registro/Asistencia/' + nrc + '/' + diaLista + '/Alumnos';
 
-    const obtener_datos = await this.firestore.collection(url).get().toPromise();
-    if (obtener_datos) {
-      const datos_leidos: any = obtener_datos.docs.map((datos) => datos.data());
-      return datos_leidos;
-    } else {
-      console.log('No se pudo obtener la información de Firestore.');
-      let error: any = []
-      return error;
-    }
+    return new Observable<EscanerDatos_Entity>((observer) => {
+      const collectionRef = this.firestore.collection(url);
+
+      // Escuchar los cambios en la colección
+      collectionRef.snapshotChanges().subscribe((snapshot) => {
+        const datos_leidos: EscanerDatos_Entity[] | any= [];
+        snapshot.forEach((doc) => {
+          const data = doc.payload.doc.data() as EscanerDatos_Entity;
+          const id = doc.payload.doc.id;
+          datos_leidos.push({ id, ...data });
+        });
+
+        observer.next(datos_leidos); // Emitir los datos leídos
+      }, (error) => {
+        console.error('Error al obtener los datos de Firestore:', error);
+        observer.error(error); // Emitir el error
+      });
+    });
   }
-
-
 }
