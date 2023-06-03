@@ -1,6 +1,6 @@
 import { GetEscanerDatosUseCase } from './../../../domain/EscanerDatos/usecase/getEscanerDatos';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FirestoreService } from '../listas/FirestoreListas.service';
+import { FirestoreService } from '../servicios/FirestoreListas.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DatosService } from '../inicio/Datos.Service';
 

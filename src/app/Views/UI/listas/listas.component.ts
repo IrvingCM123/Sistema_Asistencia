@@ -5,14 +5,6 @@ import { GetListaAsistenciaUseCase } from 'src/app/domain/ListaAsistencia/usecas
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 
-interface Dato {
-  id?: string;
-  Hora: string;
-  Matricula: string;
-  Nombre: string;
-  Status: string;
-}
-
 @Component({
   selector: 'app-listas',
   templateUrl: './listas.component.html',

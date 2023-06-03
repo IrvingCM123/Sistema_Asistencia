@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { GetMateriaUseCase } from 'src/app/domain/Materia/usecase/client/getMateria';
 import { DatosService } from './Datos.Service';
-import { FirestoreService } from '../listas/FirestoreListas.service';
+import { FirestoreService } from '../servicios/FirestoreListas.service';
 import { GetListaAsistenciaUseCase } from 'src/app/domain/ListaAsistencia/usecase/getLista';
 import { PostTokenUseCase } from 'src/app/domain/Tokens/usecase/postTokens';
 
@@ -11,9 +11,6 @@ import { PostTokenUseCase } from 'src/app/domain/Tokens/usecase/postTokens';
   styleUrls: ['./inicio.component.scss'],
 })
 export class InicioComponent implements OnInit {
-  public Materias: Array<any> = [];
-  public cantidad_alumnos: any[] = [];
-
   constructor(
     private _getMateriasCasosUso: GetMateriaUseCase,
     private _generarToken: PostTokenUseCase,
@@ -22,17 +19,20 @@ export class InicioComponent implements OnInit {
     private datosLocales: FirestoreService
   ) {}
 
-  nrc$: any;
+  public nrc$: any;
+  public Materias: Array<any> = [];
+  public cantidad_alumnos: any[] = [];
 
-  materias$: any;
-  Token: string | any;
-  TokenNrc: string | any;
+  public materias$: any;
+  public Token: string | any;
+  public TokenNrc: string | any;
 
-  datos: any;
-  dato: number = 0;
+  public datos: any;
+  public dato: number = 0;
 
   async ngOnInit() {
     this.Token = this.datosLocales.obtener_DatoLocal('Resp');
+    console.log(this.Token);
     await this.obtener_nrcMaterias(this.Token);
     await this.generarToken(this.nrc$.nrcs);
     await this.obtener_Materias(this.TokenNrc.token);
@@ -53,10 +53,10 @@ export class InicioComponent implements OnInit {
 
   async obtener_cantidadEstudiantes() {
     let nrc: string[] | any = await this.Materias.map(
-      (materia: any) => materia.nrc_materia
+      (materia: any) => materia.nrc
     );
     let carrera: string[] | any = await this.Materias.map(
-      (materia: any) => materia.carrera_materia
+      (materia: any) => materia.licenciatura
     );
 
     for (let a = 0; a <= nrc.length - 1; a++) {
@@ -93,6 +93,7 @@ export class InicioComponent implements OnInit {
       );
     });
     this.Materias = this.materias$;
+    await this.obtener_cantidadEstudiantes();
   }
 
   enviarDato(nrc: any, carrera: any) {

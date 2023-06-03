@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FirestoreService } from '../listas/FirestoreListas.service';
+import { FirestoreService } from '../servicios/FirestoreListas.service';
 import { Router } from '@angular/router';
 import { GetLoginUseCase } from 'src/app/domain/Login/usecase/getLogin';
 
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   async login(usuario: string, contraseña: string) {
     let response$;
-    this.responseSuccessful = false; 
+    this.responseSuccessful = false;
 
     response$ = await this._IniciarSesion.postLogin(usuario, contraseña).toPromise();
 

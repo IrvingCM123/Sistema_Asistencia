@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { FirestoreService } from './Views/UI/listas/FirestoreListas.service';
+import { FirestoreService } from './Views/UI/servicios/FirestoreListas.service';
 
 @Component({
   selector: 'app-root',
