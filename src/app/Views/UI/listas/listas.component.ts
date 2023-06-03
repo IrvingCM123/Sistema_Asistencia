@@ -60,10 +60,8 @@ export class Listas implements OnInit {
       const formData = new FormData();
       formData.append('file', this.fileToUpload);
 
-      // Realiza la petición para enviar el archivo al servidor
       this.http.post<any>('URL_DE_TU_API', formData).subscribe(
         response => {
-          // Actualiza la lista de asistencia con los datos recibidos del servidor
           this.listaAsistencia = response;
           this.uploadSuccess = true;
         },

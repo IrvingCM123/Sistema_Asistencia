@@ -19,7 +19,6 @@ export class EscanerDatosAdapter implements EscanerDatos_Port {
     return new Observable<EscanerDatos_Entity>((observer) => {
       const collectionRef = this.firestore.collection(url);
 
-      // Escuchar los cambios en la colección
       collectionRef.snapshotChanges().subscribe((snapshot) => {
         const datos_leidos: EscanerDatos_Entity[] | any= [];
         snapshot.forEach((doc) => {
@@ -28,10 +27,10 @@ export class EscanerDatosAdapter implements EscanerDatos_Port {
           datos_leidos.push({ id, ...data });
         });
 
-        observer.next(datos_leidos); // Emitir los datos leídos
+        observer.next(datos_leidos);
       }, (error) => {
         console.error('Error al obtener los datos de Firestore:', error);
-        observer.error(error); // Emitir el error
+        observer.error(error);
       });
     });
   }
