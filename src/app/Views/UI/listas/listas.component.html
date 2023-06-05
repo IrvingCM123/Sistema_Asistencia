@@ -1,23 +1,52 @@
-<table class="table table-striped table-hover">
+<form *ngIf="!listaAsistencia  || listaAsistencia.length == 0">
+  <input type="file" (change)="Archivo($event)" accept=".xlsx, .xls">
+  <button >Cargar archivo</button>
+</form>
+
+<div *ngIf="vistaPreviaArchivo">
+  <h2>Previsualización del archivo:</h2>
+  <p>{{ vistaPreviaArchivo.name }}</p>
+
+  <div *ngIf="jsonData && jsonData.length > 0">
+    <table class="excel-table">
+      <thead>
+        <tr>
+          <th *ngFor="let header of jsonData[0]" [ngStyle]="{ width: 100 / jsonData[0].length + '%' }">{{ header }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of jsonData.slice(1)">
+          <td *ngFor="let cell of row" [ngStyle]="{ width: 100 / jsonData[0].length + '%' }">
+            <div class="cell-content">{{ cell }}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<table class="table table-striped table-hover" *ngIf="listaAsistencia && listaAsistencia.length > 0">
   <thead>
     <h2>Lista de Asistencia</h2>
     <tr>
-      <th>Indice</th>
+      <th>Índice</th>
       <th>Alumno</th>
-      <th>Matricula</th>
+      <th>Matrícula</th>
       <th>Carrera</th>
       <th>Status</th>
     </tr>
   </thead>
   <tbody>
-    <ng-container *ngFor="let alumno_recibido of listaAsistencia; let i = index" >
+    <ng-container *ngFor="let alumno of listaAsistencia; let i = index">
       <tr class="Datos">
         <td>{{ i + 1 }}</td>
-        <td>{{ alumno_recibido.Matricula }}</td>
-        <td>{{ alumno_recibido.Nombre }}</td>
-        <td>{{ alumno_recibido.Carrera }}</td>
-        <td>{{ alumno_recibido.Status }}</td>
+        <td>{{ alumno.Nombre }}</td>
+        <td>{{ alumno.Matricula }}</td>
+        <td>{{ alumno.Carrera }}</td>
+        <td>{{ alumno.Status }}</td>
       </tr>
     </ng-container>
   </tbody>
 </table>
+
+<p *ngIf="mensajeSubir">Archivo cargado exitosamente.</p>
