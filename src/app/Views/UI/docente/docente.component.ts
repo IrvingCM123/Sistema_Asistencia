@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetDocenteUseCase } from 'src/app/domain/Docentes/use_case/client/getDocente';
-import { DatosServicel } from '../listas/DatosServiceL.Service';
-import { FirestoreService } from '../listas/FirestoreListas.service';
+import { FirestoreService } from '../servicios/FirestoreListas.service';
 
 @Component({
   selector: 'app-docente',
@@ -15,7 +14,6 @@ export class DocenteComponent implements OnInit {
 
   constructor(
     private _getDocentesCasosUso: GetDocenteUseCase,
-    private datosService: DatosServicel,
     private datos_Locales: FirestoreService
   ) { }
 
@@ -26,13 +24,9 @@ export class DocenteComponent implements OnInit {
   async ngOnInit() {
 
     this.token = this.datos_Locales.obtener_DatoLocal('Resp');
-    console.log(this.token)
     this.response$ = await this._getDocentesCasosUso.getDocenteByID(this.token);
     this.response$.subscribe((data: any) => {
       this.datos = data;
-      console.log(this.datos);
-      this.N_Personal = data.numero_personal;
-      this.datosService.setNPersonal(this.N_Personal);
     });
   }
 

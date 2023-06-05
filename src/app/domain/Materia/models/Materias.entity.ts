@@ -6,3 +6,7 @@ export class Materias {
   facultad_materia !: string;
   alumnos_materia !: string;
 }
+
+export class NRC {
+  nrc: string | any;
+}
