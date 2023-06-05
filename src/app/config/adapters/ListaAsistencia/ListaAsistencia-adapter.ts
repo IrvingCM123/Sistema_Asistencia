@@ -1,6 +1,5 @@
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Docentes } from 'src/app/domain/Docentes/models/Docentes.entity';
 import { ListaAsistencia_Port } from '../../ports/ListaAsistencia/ListaAsistencia-ports';
 import { ListaAsistencia_Entity } from 'src/app/domain/ListaAsistencia/models/ListaAsistencia.entity';
 import { AngularFirestore } from '@angular/fire/compat/firestore';

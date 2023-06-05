@@ -18,6 +18,7 @@ export class FirestoreService {
   constructor(
     private firestore: AngularFirestore
   ) { }
+
   obtener_DatoLocal(indice: string): any {
     return localStorage.getItem(indice);
   }
@@ -41,5 +42,20 @@ export class FirestoreService {
   Actualizar_Formulario(formulario: string | any) {
     this.formularioSubject.next(formulario);
   }
+
+  eliminarCacheNavegador() {
+    if (caches && caches.keys) {
+      caches.keys().then(function (keys) {
+        keys.forEach(function (key) {
+          caches.delete(key);
+        });
+      });
+    }
+
+    localStorage.clear();
+
+    sessionStorage.clear();
+  }
+
 
 }
