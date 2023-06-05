@@ -6,19 +6,19 @@
     <div class="card" *ngFor="let materia of Materias; let i = index ">
       <div class="banner">
       </div>
-      <h2 *ngIf="!datos?.title" class="name"> {{materia.nombre_materia}} </h2>
-      
-      <div class="title"> NRC: {{materia.nrc_materia}} </div>
+      <h2 *ngIf="!datos?.title" class="name"> {{materia.nombre}} </h2>
+
+      <div class="title"> NRC: {{materia.nrc}} </div>
       <div class="actions">
         <div class="follow-info">
-          <h2><p ><span *ngIf="!datos?.title"> {{materia.grupo_materia}} </span><small>Grupo</small></p></h2>
+          <h2><p ><span *ngIf="!datos?.title"> {{materia.grupo}} </span><small>Grupo</small></p></h2>
           <h2><p><span *ngIf="!datos?.title"> {{cantidad_alumnos[i]}} </span><small>Estudiantes</small></p></h2>
         </div>
         <div class="follow-btn">
-          <button (click)="enviarDato(materia.nrc_materia, materia.carrera_materia)"  routerLink="Listas">Lista Asistencia</button>
+          <button (click)="enviarDato(materia.nrc, materia.licenciatura)"  routerLink="Listas">Lista Asistencia</button>
         </div>
       </div>
-      <div *ngIf="!datos?.title" class="desc">Experiencia Educativa perteneciente al programa educativo de {{materia.carrera_materia}} en la {{materia.facultad_asignada}} </div>
+      <div *ngIf="!datos?.title" class="desc">Experiencia Educativa perteneciente al programa educativo de {{materia.licenciatura}} del turno {{materia.turno}} </div>
     </div>
 
   </article>

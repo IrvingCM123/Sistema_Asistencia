@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirestoreService } from '../listas/FirestoreListas.service';
+import { FirestoreService } from '../servicios/FirestoreListas.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Location } from '@angular/common';
 import { PostCuentasUseCase } from 'src/app/domain/Formularios/client/getFormulario';
@@ -47,7 +47,6 @@ export class RegistroComponent implements OnInit {
     ];
 
     if (this.comparar == true) {
-      console.log(this.Cuenta)
       this._cuentaCrear.postCuentas(this.Cuenta).subscribe(
         (response) => {
           this.Mensaje_Cuenta = "La cuenta ha sido creada con éxito";
