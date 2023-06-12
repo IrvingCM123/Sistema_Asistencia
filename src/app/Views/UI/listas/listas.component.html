@@ -1,7 +1,8 @@
 <form *ngIf="!listaAsistencia  || listaAsistencia.length == 0">
   <input type="file" (change)="Archivo($event)" accept=".xlsx, .xls">
-  <button >Cargar archivo</button>
 </form>
+
+<button  *ngIf="!listaAsistencia  || listaAsistencia.length == 0" (click)="GuardarDatosEnFirestore()">Cargar archivo</button>
 
 <div *ngIf="vistaPreviaArchivo">
   <h2>Previsualización del archivo:</h2>
