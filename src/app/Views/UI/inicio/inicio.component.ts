@@ -72,6 +72,7 @@ export class InicioComponent implements OnInit {
     this.nrc$ = await new Promise((resolve, reject) => {
       this._getMateriasCasosUso.getNRCMaterias(Token).subscribe(
         (Resp: any) => {
+          console.log(Resp);
           resolve(Resp);
         },
         (error: any) => {
@@ -85,6 +86,7 @@ export class InicioComponent implements OnInit {
     this.materias$ = await new Promise((resolve, reject) => {
       this._getMateriasCasosUso.getMateriasAll(materia).subscribe(
         (Resp: any) => {
+          console.log(Resp);
           resolve(Resp);
         },
         (error: any) => {

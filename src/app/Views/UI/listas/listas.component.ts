@@ -20,6 +20,7 @@ export class Listas implements OnInit {
   archivoRecibido: File | any;
   vistaPreviaArchivo: boolean | any;
   mensajeSubir: boolean | any;
+  Guardar_Datos: any[] = [];
 
   constructor(
     private _getListaAsistenciaCasosUso: GetListaAsistenciaUseCase,
@@ -70,7 +71,7 @@ export class Listas implements OnInit {
         header: 1,
       });
 
-      const Guardar_Datos: any[] = [];
+
       for (let i = 2; i < Matricula.length; i++) {
         const datos_lista: any[] = [
           Matricula[i][0],
@@ -78,26 +79,25 @@ export class Listas implements OnInit {
           Status[i][0],
           Carrera[i][0],
         ];
-        Guardar_Datos.push(datos_lista);
+        this.Guardar_Datos.push(datos_lista);
       }
-      this.GuardarDatosEnFirestore(Guardar_Datos);
 
-      this.jsonData = Guardar_Datos;
+      this.jsonData = this.Guardar_Datos;
       this.vistaPreviaArchivo = true;
     };
     archivo.readAsArrayBuffer(file);
   }
 
-  GuardarDatosEnFirestore(datos: any[]) {
+  GuardarDatosEnFirestore() {
     const db = firebase.firestore();
     const coleccion = db.collection(`ISW/Materias/`+ this.nrcMateria);
 
-    for (let i = 2; i < datos.length; i++) {
+    for (let i = 2; i <  this.Guardar_Datos.length; i++) {
       const datos_lista: any = {
-        Matricula: datos[i][0],
-        Nombre: datos[i][1],
-        Status: datos[i][2],
-        Carrera: datos[i][3],
+        Matricula:  this.Guardar_Datos[i][0],
+        Nombre:  this.Guardar_Datos[i][1],
+        Status:  this.Guardar_Datos[i][2],
+        Carrera:  this.Guardar_Datos[i][3],
       };
 
       const docRef = coleccion.doc(datos_lista.Matricula);
@@ -112,5 +112,5 @@ export class Listas implements OnInit {
     }
   }
 
- 
+
 }
