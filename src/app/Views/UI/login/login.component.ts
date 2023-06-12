@@ -21,17 +21,19 @@ export class LoginComponent implements OnInit {
   password: string = '';
   loginFailed: boolean = false;
   loggedIn: boolean = false;
-  public Token:any;
+  public Token: any;
   responseSuccessful = false;
 
   async login(usuario: string, contraseña: string) {
     let response$;
     this.responseSuccessful = false;
 
-    response$ = await this._IniciarSesion.postLogin(usuario, contraseña).toPromise();
+    response$ = await this._IniciarSesion
+      .postLogin(usuario, contraseña)
+      .toPromise();
 
     try {
-      const Resp:any = await response$;
+      const Resp: any = await response$;
       this.datosLocales.guardar_DatoLocal('Resp', Resp.token);
       this.responseSuccessful = true;
     } catch (error) {
